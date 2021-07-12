@@ -1,0 +1,38 @@
+.hero {
+  background-image: url(https://images.pexels.com/photos/4004374/pexels-photo-4004374.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-color: rgb(43, 101, 121);
+
+  height: 400px;
+  padding: 2rem;
+  color: aliceblue;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h1 {
+    font-size: 5rem;
+  }
+
+  span {
+    font-size: 2rem;
+  }
+
+  button {
+    width: 15rem;
+    padding: 8px 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    background-color: white;
+    border: rgb(21, 129, 129) solid 5px;
+    border-radius: 0 1.5rem;
+
+    &:hover {
+      color: white;
+      background-color: rgb(122, 73, 13);
+    }
+  }
+}

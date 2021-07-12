@@ -1,0 +1,34 @@
+.card {
+  background-color: rgba(133, 109, 109, 0.158);
+  margin: 1rem;
+  padding: 0.5rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  .avatar {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    top: 20px;
+    right: 22px;
+  }
+
+  .featured {
+    width: 200px;
+    height: 134px;
+  }
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0px;
+  }
+  h4 {
+    font-size: 0.8rem;
+    font-weight: 300;
+    margin-bottom: -20px;
+  }
+  span {
+    font-size: 0.7rem;
+    margin-bottom: 0px;
+  }
+}

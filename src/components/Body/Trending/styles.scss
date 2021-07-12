@@ -1,0 +1,40 @@
+.trend {
+  background-color: rgba(158, 147, 147, 0.158);
+  margin: 2rem;
+  padding: 0.5rem;
+
+  &__list {
+    list-style-type: decimal-leading-zero;
+    li {
+      display: inline-block;
+    }
+  }
+
+  &__card {
+    background-color: rgba(211, 151, 151, 0.575);
+    width: 10rem;
+    padding: 0 3rem;
+    margin: 0 2rem;
+    .avatar {
+      position: relative;
+      height: 20px;
+      width: 20px;
+      top: 20px;
+      right: 22px;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0px;
+    }
+    h4 {
+      font-size: 0.8rem;
+      font-weight: 300;
+      margin-bottom: -20px;
+    }
+    span {
+      font-size: 0.7rem;
+      margin-bottom: 0px;
+    }
+  }
+}
