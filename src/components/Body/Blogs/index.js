@@ -4,7 +4,7 @@ import Card from './Card'
 const Blogs = () => {
   let x = []
   for (let i = 0; i < 10; i++) {
-    x.push(<Card id={i + 1} />)
+    x.push(<Card key={i} id={i + 1} />)
   }
   return <div>{x}</div>
 }

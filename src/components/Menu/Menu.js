@@ -10,28 +10,25 @@ const Menu = () => {
       <div>
         <ul className='nav__links'>
           <li>
-            <a href='/' class='hvr-underline-from-left'>
+            <a href='/' className='hvr-underline-from-left'>
               Home
             </a>
           </li>
           <li>
-            <a href='/' class='hvr-underline-from-left'>
+            <a href='/' className='hvr-underline-from-left'>
               Recent
             </a>
           </li>
           <li>
-            <a href='/' class='hvr-underline-from-left'>
+            <a href='/' className='hvr-underline-from-left'>
               Our Story
             </a>
           </li>
           <li>
-            <a href='/' class='hvr-underline-from-left'>
-              Sign In
-            </a>
-            <div class='button_slide slide_in'>Sign In </div>
+            <div className='button_slide slide_in'>Sign In </div>
           </li>
           <li>
-            <div class='button_slide slide_right'>Sign Up </div>
+            <div className='button_slide slide_right'>Sign Up </div>
           </li>
         </ul>
       </div>

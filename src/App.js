@@ -1,16 +1,6 @@
 import React from 'react'
+import Routes from './Routes'
 
-import Menu from './components/Menu/Menu'
-import Body from './components/Body/Body'
-// import About from './components/About'
-
-const App = () => {
-  return (
-    <>
-      <Menu />
-      <Body />
-    </>
-  )
-}
+const App = () => <Routes />
 
 export default App

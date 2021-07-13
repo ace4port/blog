@@ -1,0 +1,17 @@
+.contents {
+  display: flex;
+  .first {
+    flex: 70%;
+  }
+  .second {
+    flex: 30%;
+    margin-left: 20px;
+  }
+
+  @media (max-width: 800px) {
+    .first,
+    .second {
+      flex: 100%;
+    }
+  }
+}

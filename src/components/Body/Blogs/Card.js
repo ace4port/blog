@@ -35,10 +35,10 @@ export default Card
 
 const Author = () => (
   <>
-    <div className='avatar'>
+    <div className='av-container'>
       <Avatar />
+      <h4 className='auth'>Author Name</h4>
     </div>
-    <h4>Author Name</h4>
   </>
 )
 

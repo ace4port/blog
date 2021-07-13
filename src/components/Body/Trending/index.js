@@ -9,7 +9,7 @@ const Trending = () => {
   const x = []
   for (let i = 0; i < 5; i++)
     x.push(
-      <li className='trend__card'>
+      <li className='trend__card' key={i}>
         <TrendingCard id={i} />
       </li>
     )

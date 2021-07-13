@@ -1,7 +1,16 @@
 .avatar {
+  box-sizing: border-box;
+  display: inline;
+  align-items: center;
+  margin-bottom: 0px;
+  padding: 0px;
+  height: 19px;
+  width: 20px;
+  border: 0px;
+  border-radius: 50%;
   img {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
   }
 }
