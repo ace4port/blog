@@ -1,4 +1,4 @@
-## View it live [here](https://p5-blog.netlify.app).
+## View it live [here](https://p6-blog.netlify.app).
 
 ## Getting Started with Create React App
 
