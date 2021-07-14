@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.blog {
+  background-color: rgb(65, 59, 59);
+  margin: 0 auto;
+
+  margin: 0 70px;
+
+  &__title {
+    color: white;
+    font-size: 5rem;
+    margin: 2rem 0 0 1.2rem;
+    padding-top: 0.5rem;
+    // margin-bottom: 0px;
+  }
+
+  &__desc {
+    margin: 0.2rem 0 0 1.2rem;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.582);
+  }
+
+  &__feat {
+    width: 80vw;
+  }
+
+  &__body {
+    padding: 2rem 5rem;
+    text-align: justify;
+
+    font-family: Roboto;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    line-height: 2rem;
+  }
+}

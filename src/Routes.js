@@ -5,13 +5,16 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // const Home = lazy(() => import('pages/Home/Home'))
 // const About = lazy(() => import('pages/About/About'))
 import Menu from './components/Menu/Menu'
+import { Recommended } from './components/Footer'
+import { PageFoot } from './components/Footer'
+
 import Home from './components/Body/Body'
 import About from './components/About'
 import BlogPage from './Pages/BlogPage'
 import Error from './Pages/Error'
 import SignIn from './Pages/Sign'
 import Settings from './Pages/Settings'
-import Footer from './Pages/BlogPage/Footer'
+// import Foot from './Pages/BlogPage/Footer'
 
 //Include Menu to all pages
 const RouteWithHeader = ({ component: Component, ...rest }) => (
@@ -21,7 +24,8 @@ const RouteWithHeader = ({ component: Component, ...rest }) => (
       <>
         <Menu />
         <Component {...props} {...rest} />
-        <Footer />
+        <Recommended />
+        <PageFoot />
       </>
     )}
   />

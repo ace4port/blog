@@ -3,14 +3,26 @@
   display: inline;
   align-items: center;
   margin-bottom: 0px;
+  margin-right: 4px;
   padding: 0px;
-  height: 19px;
+  height: 20px;
   width: 20px;
   border: 0px;
-  border-radius: 50%;
   img {
+    border-radius: 20%;
     width: inherit;
     height: inherit;
     object-fit: cover;
+  }
+}
+
+.lg {
+  height: 40px;
+  width: 40px;
+}
+
+.round {
+  img {
+    border-radius: 50%;
   }
 }

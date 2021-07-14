@@ -1,0 +1,71 @@
+.comment {
+  margin: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+
+  .icon {
+    display: inline;
+    margin: 0 0.7rem 0 2rem;
+  }
+
+  .text {
+    display: inline;
+    font-size: 20px;
+  }
+}
+
+.recommended {
+  margin: 1rem 3rem;
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    .item {
+      flex: 0 0 25%;
+    }
+  }
+}
+
+.footConain {
+  background-color: black;
+}
+
+.foot {
+  margin: 1rem 2.5rem;
+
+  a {
+    color: rgb(170, 243, 87);
+    text-decoration: none;
+  }
+
+  .cols {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .item {
+    flex: 0 0 32%;
+    margin: 0.5rem;
+  }
+
+  .buttom {
+    display: flex;
+    justify-content: space-between;
+
+    h2,
+    li {
+      cursor: pointer;
+    }
+
+    h2 {
+      margin: 1rem 2rem;
+    }
+
+    li {
+      margin: 2rem;
+      display: inline;
+      list-style-type: none;
+    }
+  }
+}

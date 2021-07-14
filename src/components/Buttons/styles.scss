@@ -1,0 +1,30 @@
+.follow {
+  background-color: rgb(94, 128, 28);
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  cursor: pointer;
+
+  span {
+    margin: 0.5rem 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+.large {
+  max-height: 2rem;
+}
+
+.small {
+  height: 1rem;
+  margin-left: 1rem;
+  display: inline;
+  span {
+    margin: 0rem 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 300;
+  }
+}

@@ -12,7 +12,8 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #851818;
+  /* background: #851818; */
+  background: #171d16;
 }
 
 /* Handle */
@@ -29,13 +30,13 @@ body {
 
 /* Code for Firefox */
 ::-moz-selection {
-  color: white;
   transform: scale(1.2);
-  background: rgb(23, 182, 95);
+  background: rgb(11, 90, 47);
+  color: white;
 }
 
 ::selection {
-  color: white;
   transform: scale(1.2);
-  background: rgb(23, 182, 95);
+  background: rgb(12, 95, 50);
+  color: white;
 }

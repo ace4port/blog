@@ -1,0 +1,1 @@
+export {AuthorDetailed} from './AuthorDetailed'
