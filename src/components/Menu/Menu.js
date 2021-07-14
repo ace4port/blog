@@ -15,12 +15,12 @@ const Menu = () => {
             </a>
           </li>
           <li>
-            <a href='/blogs/1' className='hvr-underline-from-left'>
+            <a href='/blog' className='hvr-underline-from-left'>
               Recent
             </a>
           </li>
           <li>
-            <a href='/blogs/2' className='hvr-underline-from-left'>
+            <a href='/blog' className='hvr-underline-from-left'>
               Our Story
             </a>
           </li>

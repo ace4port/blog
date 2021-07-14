@@ -40,6 +40,7 @@ const Routes = (props) => {
         <RouteWithHeader exact path={'/'} component={Home} />
         <RouteWithHeader exact path={'/about'} component={About} />
         <RouteWithHeader exact path={'/blogs/:id'} component={BlogPage} />
+        <RouteWithHeader exact path={'/blog'} component={BlogPage} />
         <RouteWithHeader exact path={'/settings'} component={Settings} />
         <RouteWithHeader exact path={'/logIn'} component={SignIn} />
         <RouteWithHeader exact path={'/error'} component={Error} />
