@@ -3,8 +3,8 @@ import Avatar from '../../Avatar'
 import './styles.scss'
 
 const Card = ({ id }) => {
-  const img =
-    'https://images.pexels.com/photos/936575/pexels-photo-936575.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940'
+  const img = 'https://via.placeholder.com/300.png/09f/fff'
+
   return (
     <div className='card'>
       <div>

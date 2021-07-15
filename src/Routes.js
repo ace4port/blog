@@ -8,12 +8,13 @@ import Menu from './components/Menu/Menu'
 import { Recommended } from './components/Footer'
 import { PageFoot } from './components/Footer'
 
-import Home from './components/Body/Body'
+import Home from './Pages/Home'
 import About from './components/About'
 import BlogPage from './Pages/BlogPage'
 import Error from './Pages/Error'
 import SignIn from './Pages/Sign'
 import Settings from './Pages/Settings'
+// author
 // import Foot from './Pages/BlogPage/Footer'
 
 //Include Menu to all pages
