@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Recommended = () => {
   let x = []
-  for (let i = 0; i < 8; i++) x.push(<RecommendCard title='Catt Kitten Kitty' author='Jane Doe' />)
+  for (let i = 0; i < 8; i++) x.push(<RecommendCard key={i} title='Catt Kitten Kitty' author='Jane Doe' />)
 
   return (
     <div className='recommended'>

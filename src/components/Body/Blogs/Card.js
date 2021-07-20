@@ -2,14 +2,14 @@ import React from 'react'
 import Avatar from '../../Avatar'
 import './styles.scss'
 
-const Card = ({ id }) => {
+const Card = ({ id, author, title, details, categories }) => {
   const img = 'https://via.placeholder.com/300.png/09f/fff'
 
   return (
     <div className='card'>
       <div>
-        <Author category={'in future impementation'} />
-        <Title title={`Blog Title ${id} Leopard`} />
+        <Author category={'in future impementation'} name={author.username} />
+        <Title title={`Blog ${id} ${title}`} />
         <Subtitle title='Blog introduction subtitle Persian british shorthair cougar' />
         <Details categories={'future implementation'} />
       </div>
@@ -33,11 +33,11 @@ export default Card
 //   </p>
 // )
 
-const Author = () => (
+const Author = ({ name }) => (
   <>
     <div className='av-container'>
       <Avatar />
-      <h4 className='auth'>Author Name</h4>
+      <h4 className='auth'>{name}</h4>
     </div>
   </>
 )

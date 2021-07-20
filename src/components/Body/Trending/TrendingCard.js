@@ -1,32 +1,32 @@
 import React from 'react'
 import Avatar from '../../Avatar'
 
-const TrendingCard = () => (
+const TrendingCard = ({ author, title, date }) => (
   <>
-    <Author />
-    <Title title='Summer of 69' />
-    <Details />
+    <Author name={author.username} img={author.image} />
+    <Title title={title} />
+    <Details date={date} />
   </>
 )
 
 export default TrendingCard
 
-const Author = () => (
+const Author = ({ name = 'John Doe', img }) => (
   <>
     <div className='avatar'>
-      <Avatar />
+      <Avatar img={img} />
     </div>
-    <h4>Author Name</h4>
+    <h4>{name}</h4>
   </>
 )
 
-const Title = ({ title }) => <h2>{title}</h2>
+const Title = ({ title = 'Hello worrld' }) => <h2>{title}</h2>
 
-const Details = () => {
-  const date = new Date()
+const Details = (date) => {
+  const dates = new Date()
   return (
     <>
-      <span>{date.toDateString()}</span>
+      <span>{dates.toDateString()}</span>
     </>
   )
 }
