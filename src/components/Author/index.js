@@ -1,1 +1,1 @@
-export {AuthorDetailed} from './AuthorDetailed'
+export { AuthorDetailed } from './AuthorDetailed'

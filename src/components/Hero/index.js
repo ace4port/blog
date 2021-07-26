@@ -4,7 +4,7 @@ import './styles.scss'
 // 1400/400px image background
 const Hero = () => (
   <div className='hero'>
-    <h1>Introduction to our site</h1>
+    <h1>Welcome to our site</h1>
 
     <span>Motto line</span>
     <hr />

@@ -1,13 +1,21 @@
 // import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes'
-import { FETCH_ALL, FETCH_ONE, REMOVE_ONE } from '../constants/actionTypes'
+import { FETCH_ALL, FETCH_ONE, REMOVE_ONE, FETCH_TRENDING } from '../constants/actionTypes'
 
 import * as api from '../api/index.js'
 
 export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts()
-
     dispatch({ type: FETCH_ALL, payload: data.articles })
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+export const fetchTrending = () => async (dispatch) => {
+  try {
+    const { data } = await api.fetchTrending()
+    dispatch({ type: FETCH_TRENDING, payload: data.articles })
   } catch (error) {
     console.log(error.message)
   }
@@ -15,12 +23,11 @@ export const getPosts = () => async (dispatch) => {
 
 export const getOnePost = (id) => async (dispatch) => {
   try {
-    const res = await api.fetchOne(id)
-    dispatch({
-      type: FETCH_ONE,
-      payload: res,
-    })
-  } catch (error) {}
+    const { data } = await api.fetchOne(id)
+    dispatch({ type: FETCH_ONE, payload: data.article })
+  } catch (error) {
+    console.log(error.message)
+  }
 }
 
 // export const selectedProduct = (product) => {

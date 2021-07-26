@@ -6,6 +6,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body a {
+  color: rgb(56, 134, 63);
+  text-decoration: none;
+}
+body a:hover {
+  color: #17927e;
+  font-size: 105%;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

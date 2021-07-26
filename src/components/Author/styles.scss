@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   margin: 1.2rem 3rem;
-
+  color: white;
   &__details {
     display: flex;
     &__img {
@@ -20,14 +20,28 @@
     margin: 0px 0 0 0rem;
   }
 
-  &__detail {
+  .first {
+    display: flex;
+    flex-direction: row;
+    margin: 1.2rem 0;
+    padding: 0.5rem;
+  }
+  &__follow {
     display: flex;
     flex-direction: column;
-
     .desc {
       font-size: 0.9rem;
       font-weight: 100;
       color: rgb(177, 172, 168);
     }
+  }
+}
+
+.authorSimple {
+  h4 {
+    display: inline;
+    text-transform: capitalize;
+    color: rgb(63, 103, 156);
+    font-size: 0.9rem;
   }
 }

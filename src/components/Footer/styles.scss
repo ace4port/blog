@@ -15,7 +15,8 @@
 }
 
 .recommended {
-  margin: 1rem 3rem;
+  padding: 1rem 3rem;
+  background-color: rgba(67, 102, 126, 0.692);
   .list {
     display: flex;
     flex-wrap: wrap;
@@ -29,12 +30,12 @@
 }
 
 .footConain {
-  background-color: black;
+  background-color: rgb(48, 48, 94);
 }
 
 .foot {
-  margin: 1rem 2.5rem;
-
+  padding: 1rem 2.5rem;
+  color: white;
   a {
     color: rgb(170, 243, 87);
     text-decoration: none;

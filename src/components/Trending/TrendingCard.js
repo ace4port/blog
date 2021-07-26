@@ -1,24 +1,18 @@
 import React from 'react'
-import Avatar from '../../Avatar'
+import { Link } from 'react-router-dom'
+import Author from '../Author/AuthorBasic'
 
-const TrendingCard = ({ author, title, date }) => (
-  <>
+const TrendingCard = ({ author, title, date, id }) => (
+  <div className='card'>
     <Author name={author.username} img={author.image} />
-    <Title title={title} />
+    <Link to={`/blogs/${id}`}>
+      <Title title={title} />
+    </Link>
     <Details date={date} />
-  </>
+  </div>
 )
 
 export default TrendingCard
-
-const Author = ({ name = 'John Doe', img }) => (
-  <>
-    <div className='avatar'>
-      <Avatar img={img} />
-    </div>
-    <h4>{name}</h4>
-  </>
-)
 
 const Title = ({ title = 'Hello worrld' }) => <h2>{title}</h2>
 

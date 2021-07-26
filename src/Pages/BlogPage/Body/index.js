@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Body = () => {
-  return <div className='blog__body'>{text}</div>
+const Body = ({ body }) => {
+  return <div className='blog__body'>{body ? body : text}</div>
 }
 /* <FollowFloatingModal /> Future implementation */
 

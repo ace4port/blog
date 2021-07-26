@@ -1,25 +1,16 @@
+.contents {
+  padding: 1rem 2.5rem;
+  background-color: rgba(56, 81, 155, 0.39);
+}
+
 .card {
+  padding: 0 0 0 0.5rem;
   background-color: rgba(133, 109, 109, 0.158);
-  padding: 0 0.5rem;
-  margin-bottom: 48px;
+  margin-bottom: 2rem;
 
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-
-  .av-container {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    display: inline;
-    img {
-    }
-    .auth {
-      display: inline;
-      font-size: 0.8rem;
-      font-weight: 300;
-    }
-  }
 
   .featured {
     width: 200px;

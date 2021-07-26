@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import reportWebVitals from './reportWebVitals';
-
-import App from './App'
-import './index.css'
 import { Provider } from 'react-redux'
 
+import Routes from './Routes'
 import store from './store'
+import './index.css'
+
+const App = () => <Routes />
 
 ReactDOM.render(
   <React.StrictMode>

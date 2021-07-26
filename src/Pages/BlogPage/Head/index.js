@@ -1,14 +1,14 @@
 import React from 'react'
 import { AuthorDetailed } from '../../../components/Author'
 
-const Head = () => {
+const Head = ({ title, desc, featImg }) => {
   let img =
-    'https://images.unsplash.com/photo-1619683172106-ff242162eb4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80'
+    'https://images.unsplash.com/photo-1619683172106-ff242162eb4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp'
   let cap = 'black and red computer keyboard'
   return (
     <>
-      <Title title={'Hello world'} />
-      <SubTitle title={'Cats go meaaw'} />
+      <Title title={title} />
+      <SubTitle title={desc} />
       <AuthorDetailed />
       <FeatImage feat={img} alt={cap} />
     </>

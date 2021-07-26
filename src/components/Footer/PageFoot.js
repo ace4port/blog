@@ -35,7 +35,7 @@ export const PageFoot = () => {
 
           <div className='item'>
             <div>
-              <a href='https://medium.com' rel='noopener'>
+              <a href='/' rel='noopener'>
                 <h2>Write a story on Medium .</h2>
               </a>
             </div>

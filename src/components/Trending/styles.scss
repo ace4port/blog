@@ -1,0 +1,47 @@
+.trend {
+  background-color: rgba(158, 147, 147, 0.507);
+  padding: 1rem 2rem;
+
+  &__top {
+    span {
+      font-size: 1.5rem;
+    }
+    .icon {
+      height: 20px !important;
+      width: 2rem !important;
+    }
+  }
+
+  &__card {
+    background-color: rgba(236, 236, 236, 0.575);
+    padding: 0 2rem;
+    margin: 0 2rem 0.5rem 0;
+    width: 25rem;
+    width: 90%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+
+    .card {
+      width: 30%;
+      margin: 0.4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    h2 {
+      // position: inline;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0px;
+    }
+    span {
+      font-size: 0.7rem;
+      margin-bottom: 0px;
+    }
+  }
+}

@@ -9,8 +9,9 @@
   padding: 0px 40px;
 
   &__logo {
-    color: lavender;
-    transform: scale(2) easein;
+    h2 {
+      color: white;
+    }
   }
 
   &__links {
@@ -25,6 +26,9 @@
 
       color: azure;
       text-decoration: none;
+    }
+    li a:hover {
+      color: rgb(230, 230, 221);
     }
   }
 
