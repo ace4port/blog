@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Avatar from '../Avatar'
 import './menu.scss'
 
 const Menu = () => {
-  const isLoggedIn = false
+  const [isLoggedIn, setLoggedIn] = useState(true)
   return (
     <div className='nav'>
       <div className='nav__logo'>
@@ -30,21 +30,27 @@ const Menu = () => {
             </a>
           </li>
           {isLoggedIn ? (
-            <Avatar round variant='lg' />
+            <>
+              <li>
+                <Link to='/' className='button_slide slide_in' onClick={() => setLoggedIn((c) => !c)}>
+                  Log Out
+                </Link>
+              </li>
+              <Avatar round variant='lg' />
+            </>
           ) : (
             <>
               <li>
-                <Link className='button_slide slide_in' to='signIn'>
+                <Link className='button_slide slide_in' to='/logIn' onClick={() => setLoggedIn((c) => !c)}>
                   Sign In
-                </Link>
-              </li>
-              <li>
-                <Link to='signIn' className='button_slide slide_in'>
-                  Sign Up
                 </Link>
               </li>
             </>
           )}
+          <li>
+            Switch Dark mode
+            {/* 4 way switch- black-white blue-green */}
+          </li>
         </ul>
       </div>
     </div>

@@ -12,3 +12,22 @@ export const fetchOne = (id) => axios.get(`${url}/api/articles/${id}`)
 // export const likePost = (id) => axios.patch(`${url}/${id}/likePost`)
 // export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost)
 // export const deletePost = (id) => axios.delete(`${url}/${id}`)
+
+export const register = (user) => {
+  axios
+    .post(`${url}/api/users`, {
+      user: user,
+    })
+    .then((response) => {
+      console.log('User Created', response.data)
+    })
+    .catch((error) => console.log(error.message, error.response.data.errors))
+}
+
+export const logIn = (user) => {
+  return axios.post(`${url}/api/users/login`, {
+    user: user,
+  })
+}
+
+export const logOut = () => axios.get(`${url}/api/users`)

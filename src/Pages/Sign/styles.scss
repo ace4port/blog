@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  //   align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: rgba(17, 62, 121, 0.76);
+}
+.form {
+  margin: 1rem;
+  padding: 2rem;
+  width: 20rem;
+  background-color: rgba(102, 51, 153, 0.856);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-radius: 2rem;
+
+  h2 {
+    margin: 0 auto;
+    font-size: 2rem;
+  }
+
+  &__item {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0.4rem;
+    label {
+      font-size: 1.2rem;
+    }
+    input {
+      padding: 0.5rem;
+      border: none;
+      border: 1px solid rgb(81, 230, 197);
+    }
+    input:focus {
+      outline: none;
+      border: none;
+      border-bottom: 2px solid rgb(243, 67, 36);
+      box-shadow: none;
+    }
+  }
+
+  &__btn {
+    width: 7rem;
+    padding: 0.5rem;
+    margin: auto;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+
+    border: none;
+    border-radius: 2rem;
+    background-color: rgb(65, 158, 182);
+  }
+  &__btn:hover {
+    background-color: rgb(77, 192, 221);
+    transform: scale(1.05);
+    transform: rotate(-2deg);
+  }
+  b {
+    font-size: 1.1rem;
+    color: rgb(231, 183, 183);
+    cursor: pointer;
+  }
+}
+
+.formR {
+  @extend .form;
+  background-color: rgba(31, 75, 133, 0.89);
+}

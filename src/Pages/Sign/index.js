@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SignUp from './SignIn'
+import Register from './Register'
+import './styles.scss'
 
 const SignIn = () => {
-  return <div>Sign In here</div>
+  const [isSignedIn, setSignIn] = useState(true)
+
+  return (
+    <div className='container'>
+      {isSignedIn ? <SignUp setSignIn={setSignIn} /> : <Register setSignIn={setSignIn} />}
+    </div>
+  )
 }
 
 export default SignIn

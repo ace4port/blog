@@ -63,7 +63,6 @@ export const trending = (articles = defState, action) => {
 export const post = (post = defPost, action) => {
   switch (action.type) {
     case FETCH_ONE:
-      console.log(action.payload)
       return { post: action.payload }
     case REMOVE_ONE:
       return {}
