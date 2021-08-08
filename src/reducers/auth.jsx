@@ -14,17 +14,20 @@ export const user =(state = initState, action) => {
                 isAuthenticated: false,
                 user: action.payload.user
             }
-            case LOG_IN:
-                console.log('Logged in') 
-                return {
-                isAuthenticated: false,
-                user: action.payload.data.user
-            }    
+
+        case LOG_IN:
+            console.log('Logged in') 
+            return {
+            isAuthenticated: false,
+            user: action.payload.data.user
+        }
+
         case LOG_OUT:
             return {
                 isAuthenticated: false,
                 user: {}
             }
+            
         default:
             return state    
     }

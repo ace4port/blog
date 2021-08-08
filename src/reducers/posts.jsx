@@ -23,6 +23,7 @@ const defState = {
   ],
 }
 const defPost = {
+  loading: true,
   post: {
     author: {
       username: 'Ace',
@@ -63,7 +64,7 @@ export const trending = (articles = defState, action) => {
 export const post = (post = defPost, action) => {
   switch (action.type) {
     case FETCH_ONE:
-      return { post: action.payload }
+      return { loading: true,post: action.payload }
     case REMOVE_ONE:
       return {}
     // case CREATE:
