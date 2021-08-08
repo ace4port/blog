@@ -1,30 +1,51 @@
-import { LOG_IN, LOG_OUT } from '../constants/actionTypes'
+import {
+  LOG_IN_REQ,
+  LOG_IN_SUCCESS,
+  LOG_IN_F,
+  LOG_OUT,
+  REGISTER_REQ,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+} from '../constants/actionTypes'
 
 import * as api from '../api/index.js'
 
 export const logIn = (user) => async (dispatch) => {
   try {
-    const log = await api.logIn(user)
-    dispatch({ type: LOG_IN, payload: log.data })
+    dispatch({ type: LOG_IN_REQ })
+
+    const { data } = await api.logIn(user)
+
+    dispatch({ type: LOG_IN_SUCCESS, payload: data })
+    localStorage.setItem('refresh', data.refresh)
+    localStorage.setItem('access', data.access)
   } catch (error) {
-    console.log(error.message)
+    dispatch({ type: LOG_IN_F, payload: error.response.data })
+    console.log(error)
   }
 }
 
 export const register = (user) => async (dispatch) => {
   try {
-    console.log(user)
-    const logIn = await api.register(user)
-    dispatch({ type: LOG_IN, payload: logIn })
+    dispatch({ type: REGISTER_REQ })
+
+    const res = await api.register(user)
+
+    dispatch({ type: REGISTER_SUCCESS, payload: res.data })
+    localStorage.setItem('refresh', res.data.refresh)
+    localStorage.setItem('access', res.data.access)
   } catch (error) {
-    console.log(error.message)
+    dispatch({ type: REGISTER_FAIL, payload: error.response.data })
+    console.log(error)
   }
 }
 
 export const logOut = () => async (dispatch) => {
   try {
-    const s = await api.logOut()
-    dispatch({ type: LOG_OUT, payload: s })
+    localStorage.removeItem('access')
+    localStorage.removeItem('refresh')
+    // const s = await api.logOut()
+    dispatch({ type: LOG_OUT })
   } catch (error) {
     console.log(error.message)
   }

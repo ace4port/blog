@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
 import { posts, trending, post } from './posts'
-import { user } from './auth'
+import { userLogin, userRegister } from './auth'
 
-export const reducers = combineReducers({ posts, trending, post, user })
+export const reducers = combineReducers({ posts, trending, post, userLogin, userRegister })
