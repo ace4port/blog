@@ -2,12 +2,12 @@ import React from 'react'
 import { AuthorFollow } from '../../../components/Author/AuthorFollow'
 import { LikeComment } from '../../../components/Footer'
 
-const Footer = () => {
+const Footer = ({ username, desc }) => {
   return (
     <div>
       {/* <SignUp /> for newsletter- future implementation*/}
       <LikeComment />
-      <AuthorFollow />
+      <AuthorFollow username={username} desc={desc} />
     </div>
   )
 }

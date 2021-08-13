@@ -9,20 +9,21 @@ import './styles.scss'
 
 const Featured = () => {
   const dispatch = useDispatch()
-  const articles = useSelector((state) => state.posts.articles)
-
+  const { error, loading, articles } = useSelector((state) => state.posts)
   useEffect(() => dispatch(getPosts()), [dispatch])
 
   return (
     <div className='contents'>
       <div className='first'>
+        {error && <h4>Something went wrong</h4>}
+
         {/* Blogs */}
-        {articles === undefined ? (
-          <h2>Soemthing went wrong</h2>
-        ) : !articles.length ? (
+        {loading ? (
           <div>Loading ...</div>
         ) : (
-          articles.map((post, i) => <Card key={i} id={i} title={post.title} author={post.author} slug={post.slug} />)
+          articles.map((post, i) => (
+            <Card key={i} id={i} title={post.title} author={post.user_detail} slug={post.slug} />
+          ))
         )}
       </div>
 

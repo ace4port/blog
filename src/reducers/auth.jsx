@@ -6,6 +6,7 @@ import {
   REGISTER_REQ,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  LOG_IN_TOKEN,
 } from '../constants/actionTypes'
 
 const initState = {
@@ -19,10 +20,11 @@ const initState = {
 
 export const userLogin = (state = initState, action) => {
   switch (action.type) {
+    case LOG_IN_TOKEN:
+      return { loading: false, error: false, isAuthenticated: true, user: action.payload }
+      
     case LOG_IN_REQ:
-      return {
-        loading: true,
-      }
+      return { loading: true }
 
     case LOG_IN_SUCCESS:
       return {

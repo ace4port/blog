@@ -28,9 +28,13 @@
   }
 
   &__feat {
-    display: block;
-    margin: auto;
-    width: 50rem;
+    &__img {
+      display: block;
+      margin: 0.5rem auto;
+      object-fit: contain;
+      overflow: hidden;
+      width: 90%;
+    }
   }
 
   &__body {
@@ -41,4 +45,34 @@
     letter-spacing: 0.1rem;
     line-height: 1.5rem;
   }
+}
+
+.head__top {
+  display: flex;
+  justify-content: space-between;
+  &__right {
+    display: inline;
+  }
+  &__left {
+    display: inline;
+    margin: auto 1.5rem;
+  }
+}
+.head__icon {
+  margin: 0 1rem;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  color: rebeccapurple;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.loader {
+  // background-color: rebeccapurple;
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }

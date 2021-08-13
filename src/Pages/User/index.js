@@ -1,4 +1,6 @@
 import React from 'react'
+import Avatar from '../../components/Avatar'
+import Title from '../../components/misc/Title'
 
 const User = () => {
   return (
@@ -15,8 +17,8 @@ const Hero = () => (
   <div>
     <Avatar large />
     <Title />
-    <Intro />
-    <Button authorName>Follow</Button>
+    {/* <Intro /> */}
+    <button authorName>Follow</button>
   </div>
 )
 

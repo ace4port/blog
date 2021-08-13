@@ -11,11 +11,11 @@ export const LikeComment = () => {
         <div className='icon'>
           <ClapIcon />
         </div>
-        <p className='text'>{'20'}</p>
+        <p className='text'></p>
         <div className='icon'>
           <CommentIcon />
         </div>
-        <p className='text'>{'2'}</p>
+        <p className='text'></p>
       </div>
       <div className='icon'>
         <SocialIcons />

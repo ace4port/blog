@@ -1,20 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Title from '../misc/Title'
 import Author from '../Author/AuthorBasic'
 
 const TrendingCard = ({ author, title, date, id }) => (
   <div className='card'>
-    <Author name={author.username} img={author.image} />
-    <Link to={`/blogs/${id}`}>
-      <Title title={title} />
-    </Link>
+    <Author name={author.username} />
+    <Title title={title} link={id} />
     <Details date={date} />
   </div>
 )
 
 export default TrendingCard
-
-const Title = ({ title = 'Hello worrld' }) => <h2>{title}</h2>
 
 const Details = (date) => {
   const dates = new Date()

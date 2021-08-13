@@ -60,7 +60,6 @@
   .hvr-underline-from-left {
     display: inline-block;
     padding-left: 0px 10px;
-    vertical-align: middle;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -79,7 +78,7 @@
     bottom: 0;
     // background: #4020d1;
     background: #d80286;
-    height: 4px;
+    height: 2px;
     -webkit-transition-property: right;
     transition-property: right;
     -webkit-transition-duration: 0.3s;
@@ -91,5 +90,10 @@
   .hvr-underline-from-left:focus:before,
   .hvr-underline-from-left:active:before {
     right: 0;
+  }
+
+  .theme__select {
+    display: flex;
+    flex-direction: column;
   }
 }

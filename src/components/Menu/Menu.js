@@ -51,10 +51,18 @@ const Menu = () => {
               </li>
             </>
           )}
-          <li>
-            Switch Dark mode
-            {/* 4 way switch- black-white blue-green */}
-          </li>
+          {/* <li className='theme__select'>
+            <label>Select theme</label>
+            <select>
+              <option>Light</option>
+              <option>Dark</option>
+            </select>
+            <select>
+              <option>Blue</option>
+              <option>Green</option>
+            </select>
+            {/* 4 way switch- black-white blue-green 
+          </li> */}
         </ul>
       </div>
     </div>

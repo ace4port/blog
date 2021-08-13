@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-
 import { useDispatch, useSelector } from 'react-redux'
 import TrendingCard from './TrendingCard'
 import TrendingIcon from '../Icons/TrendingIcon'
@@ -8,26 +7,23 @@ import './styles.scss'
 
 const Trending = () => {
   const dispatch = useDispatch()
-  const articles = useSelector((state) => state.trending.articles)
-
+  const { loading, articles, error } = useSelector((state) => state.trending)
   useEffect(() => dispatch(fetchTrending()), [dispatch])
-  // console.log(articles)
 
   return (
     <div className='trend'>
       <div className='trend__top'>
         <TrendingIcon className='icon' />
-        <span>Trending on techKTM</span>
+        <span>Trending on Tech-Blogs</span>
       </div>
 
-      {articles === undefined ? (
-        <h2>Something went wrong </h2>
-      ) : !articles.length ? (
+      {error && <p>Something went wrong</p>}
+      {loading ? (
         <h2>Loading ...</h2>
       ) : (
         <div className='trend__card'>
           {articles.map((post, index) => (
-            <TrendingCard key={index} author={post.author} title={post.title} date={post.createdAt} id={post.slug} />
+            <TrendingCard key={index} author={post.user_detail} title={post.title} date={post.createdAt} id={post.id} />
           ))}
         </div>
       )}

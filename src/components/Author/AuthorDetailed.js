@@ -7,22 +7,20 @@ import { FollowBtn } from '../Buttons'
 import './styles.scss'
 
 export const AuthorDetailed = () => {
-  const post = useSelector((state) => state.post.post)
+  const post = useSelector((state) => state.postR.post)
 
-  let { username, image } = post.author
-
-  let date = new Date(post.createdAt)
+  let date = new Date(post.updated_at)
   date = date.toDateString()
 
   return (
     <div className='author'>
       <div className='author__details'>
         <div className='author__details__img'>
-          <Avatar variant='lg' border='arc' round avImg={image} />
+          <Avatar variant='lg' border='arc' round />
         </div>
         <div className='author__details__desc'>
           <div>
-            <h4>{username}</h4>
+            <h4>{post?.user_detail?.username || 'John Doe'}</h4>
             <FollowBtn variant='small' />
           </div>
           <div className='author__details__date'>

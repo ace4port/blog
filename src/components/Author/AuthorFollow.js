@@ -5,9 +5,8 @@ import { FollowBtn } from '../Buttons'
 import './styles.scss'
 
 export const AuthorFollow = () => {
-  const author = useSelector((state) => state.post.post.author)
-  const { username, bio } = author
-  const desc = bio || 'This author is shy and forgot to introduce self but rest assured- they are awesome'
+  const post = useSelector((state) => state.postR.post)
+  const desc = 'This author is shy and didnt introduce self'
 
   return (
     <div className='author'>
@@ -16,7 +15,7 @@ export const AuthorFollow = () => {
 
         <div className='author__follow'>
           <span>Written By:</span>
-          <h4>{username}</h4>
+          <h4>{post?.user_detail?.username || 'John Doe'}</h4>
           <span className='desc'>{desc}</span>
         </div>
       </div>

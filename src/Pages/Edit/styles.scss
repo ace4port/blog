@@ -1,0 +1,27 @@
+.contain {
+  margin: 0;
+  background-color: rgba(101, 128, 216, 0.685);
+}
+.form {
+  margin: 0 auto;
+  color: white;
+  background-color: rgba(101, 128, 216, 0.685);
+
+  &__label {
+    display: block;
+  }
+  &__field {
+    width: 100%;
+    &__desc {
+      height: 5rem;
+    }
+    margin-bottom: 0.5rem;
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid red;
+    }
+  }
+
+  &__btn {
+  }
+}

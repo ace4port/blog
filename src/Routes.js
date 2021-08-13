@@ -5,11 +5,12 @@ import Menu from './components/Menu/Menu'
 // import { PageFoot, Recommended } from './components/Footer'
 import { PageFoot } from './components/Footer'
 import Home from './Pages/Home'
-// import About from './components/About'
+import About from './Pages/User'
 import BlogPage from './Pages/BlogPage'
-import Error from './Pages/Error'
+import { Edit, Create } from './Pages/Edit'
 import { SignIn, Register } from './Pages/Sign'
-// import Settings from './Pages/Settings'
+import Settings from './Pages/Settings'
+import Error from './Pages/Error'
 
 // routes
 const Routes = () => {
@@ -19,11 +20,13 @@ const Routes = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/blogs/:id' component={BlogPage} />
+        <Route exact path='/create' component={Create} />
+        <Route exact path='/article/:id' component={Edit} />
         <Route exact path='/logIn' component={SignIn} />
         <Route exact path='/register' component={Register} />
+        <Route exact path='/about' component={About} />
+        <Route exact path='/user/settings' component={Settings} />
         <Route component={Error} />
-        {/* <Route exact path={'/about'} component={About} /> */}
-        {/* <Route exact path={'/settings'} component={Settings} /> */}
       </Switch>
       {/* <Recommended /> */}
       <PageFoot />
