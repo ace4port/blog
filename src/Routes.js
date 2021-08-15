@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import Menu from './components/Menu/Menu'
 // import { PageFoot, Recommended } from './components/Footer'
@@ -12,7 +12,7 @@ import { SignIn, Register } from './Pages/Sign'
 import Settings from './Pages/Settings'
 import Error from './Pages/Error'
 
-// routes
+// Routes
 const Routes = () => {
   return (
     <Router>
@@ -20,12 +20,13 @@ const Routes = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/blogs/:id' component={BlogPage} />
-        <Route exact path='/create' component={Create} />
-        <Route exact path='/article/:id' component={Edit} />
         <Route exact path='/logIn' component={SignIn} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/about' component={About} />
-        <Route exact path='/user/settings' component={Settings} />
+
+        <PrivateRoute exact path='/create' component={Create} />
+        <PrivateRoute exact path='/article/:id' component={Edit} />
+        <PrivateRoute exact path='/user/settings' component={Settings} />
         <Route component={Error} />
       </Switch>
       {/* <Recommended /> */}
@@ -35,3 +36,10 @@ const Routes = () => {
 }
 
 export default Routes
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) => (localStorage.getItem('refresh') ? <Component {...props} /> : <Redirect to='/logIn' />)}
+  />
+)

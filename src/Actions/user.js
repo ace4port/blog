@@ -30,8 +30,9 @@ export const logIn = (user) => async (dispatch) => {
     localStorage.setItem('refresh', data.refresh)
     localStorage.setItem('access', data.access)
     localStorage.setItem('user', JSON.stringify(data.user))
+    localStorage.setItem('exp', Date.now())
   } catch (error) {
-    dispatch({ type: LOG_IN_F, payload: error.response.data })
+    dispatch({ type: LOG_IN_F, payload: error?.response?.data })
     console.log(error)
   }
 }
@@ -53,9 +54,7 @@ export const register = (user) => async (dispatch) => {
 
 export const logOut = () => async (dispatch) => {
   try {
-    localStorage.removeItem('access')
-    localStorage.removeItem('refresh')
-    localStorage.removeItem('user')
+    localStorage.clear()
     // const s = await api.logOut()
     dispatch({ type: LOG_OUT })
   } catch (error) {

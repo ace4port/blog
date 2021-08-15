@@ -26,6 +26,8 @@ export const FETCH_ONE_ERROR = 'FETCH_ONE_ERROR'
 export const CREATE_REQ = 'CREATE_REQ'
 export const CREATE_SUCCESS = 'CREATE_SUCCESS'
 export const CREATE_ERROR = 'CREATE_ERROR'
+export const RESET = 'RESET'
+export const RESETD = 'RESETD'
 
 export const REMOVE_ONE = 'REMOVE_ONE'
 
@@ -34,6 +36,8 @@ export const UPDATE_SUCCESS = 'UPDATE_SUCCESS'
 export const UPDATE_FAIL = 'UPDATE_FAIL'
 
 export const DELETE = 'DELETE'
+export const DELETE_SUCCESS = 'DELETE_SUCCESS'
+export const DELETE_ERROR = 'DELETE_ERROR'
 // export const LIKE = 'LIKE'
 // export const COMMENT = 'COMMENT'
 

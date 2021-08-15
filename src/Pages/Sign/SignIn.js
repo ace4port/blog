@@ -13,6 +13,7 @@ export const SignIn = () => {
   const [pass, setPass] = useState('')
 
   useEffect(() => {
+    // if (localStorage.getItem('authToken')) {
     if (isAuthenticated) {
       history.push('/')
     }
@@ -56,6 +57,10 @@ export const SignIn = () => {
         <button className='form__btn' type='submit' onClick={handleSubmit}>
           Sign In
         </button>
+
+        <Link to='/forgotpassword' className='login-screen__forgotpassword'>
+          Forgot Password?
+        </Link>
 
         <h4>
           New here?

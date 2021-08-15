@@ -1,5 +1,12 @@
-import { FETCH_ONE_START, FETCH_ONE_SUCCESS, FETCH_ONE_ERROR, REMOVE_ONE } from '../constants/actionTypes'
-import { CREATE_REQ, CREATE_SUCCESS, CREATE_ERROR } from '../constants/actionTypes'
+import {
+  FETCH_ONE_START,
+  FETCH_ONE_SUCCESS,
+  FETCH_ONE_ERROR,
+  REMOVE_ONE,
+  UPDATE_SUCCESS,
+} from '../constants/actionTypes'
+import { CREATE_REQ, CREATE_SUCCESS, CREATE_ERROR, RESET } from '../constants/actionTypes'
+import { DELETE_SUCCESS, DELETE_ERROR, RESETD } from '../constants/actionTypes'
 
 import * as api from '../api/index.js'
 
@@ -18,16 +25,28 @@ export const removeOne = () => (dispatch) => {
   dispatch({ type: REMOVE_ONE })
 }
 
-export const createPost = (post) => async (dispatch, getState) => {
+export const resetCreate = () => async (dispatch) => dispatch({ type: RESET })
+
+export const tokenValidate = async () => {
+  const exp = localStorage.getItem('exp')
+  if (Date.now() >= exp * 1000) {
+    const tokenR = localStorage.getItem('refresh')
+    const access = await api.refresh(tokenR)
+    const tokenA = access?.data?.access
+    return tokenA
+  }
+  return localStorage.getItem('access')
+}
+
+export const createPost = (post) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_REQ })
-    const {
-      userLogin: { user },
-    } = getState()
+    const token = await tokenValidate()
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${token}`,
       },
     }
     const { data } = await api.createPost(post, config)
@@ -39,31 +58,38 @@ export const createPost = (post) => async (dispatch, getState) => {
   }
 }
 
-// export const updatePost = (id, post) => async (dispatch) => {
-//   try {
-//     const { data } = await api.updatePost(id, post)
+export const updatePost = (id, post) => async (dispatch) => {
+  try {
+    const token = await tokenValidate()
+    const config = { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
 
-//     dispatch({ type: UPDATE, payload: data })
-//   } catch (error) {
-//     console.log(error.message)
-//   }
-// }
+    const { data } = await api.updatePost(id, post, config)
+
+    dispatch({ type: UPDATE_SUCCESS, payload: data })
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+export const resetDelete = () => async (dispatch) => dispatch({ type: RESETD })
+export const deletePost = (id) => async (dispatch) => {
+  try {
+    const token = await tokenValidate()
+    const config = { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
+    await api.deletePost(id, config)
+
+    dispatch({ type: DELETE_SUCCESS, payload: id })
+  } catch (error) {
+    dispatch({ type: DELETE_ERROR, payload: error })
+    console.log(error.message)
+  }
+}
 
 // export const likePost = (id) => async (dispatch) => {
 //   try {
 //     const { data } = await api.likePost(id)
 
 //     dispatch({ type: LIKE, payload: data })
-//   } catch (error) {
-//     console.log(error.message)
-//   }
-// }
-
-// export const deletePost = (id) => async (dispatch) => {
-//   try {
-//     await api.deletePost(id)
-
-//     dispatch({ type: DELETE, payload: id })
 //   } catch (error) {
 //     console.log(error.message)
 //   }

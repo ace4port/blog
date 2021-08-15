@@ -33,18 +33,18 @@ export const userLogin = (state = initState, action) => {
         error: false,
         success: true,
         isAuthenticated: true,
-        user: action.payload.user,
+        user: action?.payload?.user,
       }
 
     case LOG_IN_F:
       const message =
-        action.payload.email || action.payload.username || action.payload.password || action.payload.re_password
+        action.payload?.email || action.payload?.username || action.payload?.password || action.payload?.re_password
       return {
         loading: false,
         error: true,
         message: message,
         isAuthenticated: false,
-        user: action.payload.user,
+        user: {},
       }
 
     case LOG_OUT:

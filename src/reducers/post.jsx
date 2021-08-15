@@ -6,6 +6,10 @@ import {
   CREATE_REQ,
   CREATE_SUCCESS,
   CREATE_ERROR,
+  RESET,
+  DELETE_SUCCESS,
+  DELETE_ERROR,
+  RESETD
 } from '../constants/actionTypes'
 
 const defPost = {
@@ -51,13 +55,29 @@ export const postR = (articles = defPost, action) => {
 
 export const postCreate = (state = {loading: false, error: false, success: false, message: '' }, action) => {
   switch (action.type) {
+    case RESET: 
+    return { ...state, loading: false, error: false, success: false, message: '' }
     case CREATE_REQ:
-      return { ...state, loading: true, error: false, success: false }
+      return { ...state, loading: true, error: false, success: false, message: '' }
     case CREATE_SUCCESS:
       return { loading: false, error: false, success: true, message: 'Success' }
     case CREATE_ERROR:
       return { loading: false, error: true, success: false, message: action.payload }
     default:
       return state
+  }
+}
+
+export const postDelete = (success = false, action) => {
+  switch (action.type) {
+    case RESETD:
+      return {success: false}
+    case DELETE_SUCCESS:
+      console.log('hwllo')
+      return {success: true}
+    case DELETE_ERROR: 
+      return {success: false}
+    default:
+      return success
   }
 }

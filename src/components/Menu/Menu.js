@@ -24,17 +24,22 @@ const Menu = () => {
             </a>
           </li>
           <li>
-            <a href='/blog' className='hvr-underline-from-left'>
-              Recent
+            <a href='/blogs/1' className='hvr-underline-from-left'>
+              Random
             </a>
           </li>
           <li>
-            <a href='/blog' className='hvr-underline-from-left'>
+            <a href='/about' className='hvr-underline-from-left'>
               Our Story
             </a>
           </li>
           {isAuthenticated ? (
             <>
+              <li>
+                <Link to='/create' className='hvr-underline-from-left'>
+                  Create Post
+                </Link>
+              </li>
               <li>
                 <Link to='/' className='button_slide slide_in' onClick={() => dispatch(logOut())}>
                   Log Out
