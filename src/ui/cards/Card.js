@@ -1,7 +1,7 @@
 import React from 'react'
-import Author from '../../Author/AuthorBasic'
-import Title from '../../misc/Title'
-import { Subtitle, Details, FeatImg } from '../../misc'
+import Author from '../../components/Author/AuthorBasic'
+import Title from '../../components/misc/Title'
+import { Subtitle, Details, FeatImg } from '../../components/misc'
 import './styles.scss'
 
 const Card = ({ id, author, title, details, categories, thumbnail }) => {

@@ -1,6 +1,6 @@
 import React from 'react'
-import Title from '../misc/Title'
-import Author from '../Author/AuthorBasic'
+import Title from '../../components/misc/Title'
+import Author from '../../components/Author/AuthorBasic'
 
 const TrendingCard = ({ author, title, date, id }) => (
   <div className='card'>

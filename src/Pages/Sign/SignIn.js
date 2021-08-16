@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { logIn } from '../../Actions/user'
+import Error from '../../ui/error'
 import './styles.scss'
 
 export const SignIn = () => {
-  let { loading, success, error, message, isAuthenticated } = useSelector((s) => s.userLogin)
+  let { success, isAuthenticated } = useSelector((s) => s.userLogin)
+  const { error, message } = useSelector((s) => s.error)
+
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -13,7 +16,6 @@ export const SignIn = () => {
   const [pass, setPass] = useState('')
 
   useEffect(() => {
-    // if (localStorage.getItem('authToken')) {
     if (isAuthenticated) {
       history.push('/')
     }
@@ -27,18 +29,19 @@ export const SignIn = () => {
   return (
     <div className='container'>
       <form className='form' autoComplete='off'>
-        {loading && <p>Loading ...</p>}
-        {error && <p>{message}</p>}
+        {error && <Error show={error} message={message} />}
+
         {success && <p>{message}</p>}
         <h2>Sign In</h2>
         <div className='form__item'>
           <label htmlFor='username'>Username</label>
           <input
+            type='text'
+            name='username'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            name='username'
-            type='text'
             placeholder='username'
+            required
           />
         </div>
 
@@ -51,6 +54,7 @@ export const SignIn = () => {
             type='password'
             autoComplete='new-password'
             placeholder='password'
+            required
           />
         </div>
 

@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux'
-import { posts, trending } from './posts'
-import {postR, postCreate, postDelete } from './post'
-import { userLogin, userRegister } from './auth'
+import { loading, error } from './globals'
+import { userLogin } from './auth'
+import { posts, postR } from './post'
 
-export const reducers = combineReducers({ posts, trending, userLogin, userRegister, postR, postCreate, postDelete })
+export const reducers = combineReducers({
+  loading,
+  error,
+  userLogin,
+  posts,
+  postR,
+})

@@ -1,70 +1,56 @@
 import {
-  LOG_IN_REQ,
-  LOG_IN_SUCCESS,
-  LOG_IN_F,
-  LOG_OUT,
-  REGISTER_REQ,
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
   LOG_IN_TOKEN,
+  LOG_IN_SUCCESS,
+  LOG_OUT,
+  REGISTER_SUCCESS,
+  LOGIN_ERROR,
+  REGISTER_ERROR,
 } from '../constants/actionTypes'
 
 const initState = {
-  inAuthenticated: false,
-  loading: false,
   error: false,
+  loading: false,
   success: false,
+  inAuthenticated: false,
   message: '',
   user: {},
 }
 
-export const userLogin = (state = initState, action) => {
+export const userLogin = (logIn = initState, action) => {
   switch (action.type) {
     case LOG_IN_TOKEN:
-      return { loading: false, error: false, isAuthenticated: true, user: action.payload }
-      
-    case LOG_IN_REQ:
-      return { loading: true }
+      return {
+        error: false,
+        loading: false,
+        success: true,
+        isAuthenticated: true,
+        message: 'Log in success via token',
+        user: action.payload,
+      }
 
     case LOG_IN_SUCCESS:
       return {
-        message: 'User logged in',
-        loading: false,
         error: false,
         success: true,
-        isAuthenticated: true,
-        user: action?.payload?.user,
-      }
-
-    case LOG_IN_F:
-      const message =
-        action.payload?.email || action.payload?.username || action.payload?.password || action.payload?.re_password
-      return {
         loading: false,
-        error: true,
-        message: message,
-        isAuthenticated: false,
-        user: {},
+        isAuthenticated: true,
+        message: 'User logged in',
+        user: action.payload.user,
       }
 
     case LOG_OUT:
       return {
+        error: false,
+        loading: false,
+        success: true,
+        message: 'User logged out',
         isAuthenticated: false,
         user: {},
       }
 
-    default:
-      return state
-  }
-}
-
-export const userRegister = (state = initState, action) => {
-  switch (action.type) {
-    case REGISTER_REQ:
-      return { loading: true }
-
     case REGISTER_SUCCESS:
       return {
+        error: false,
         loading: false,
         success: true,
         isAuthenticated: true,
@@ -72,20 +58,30 @@ export const userRegister = (state = initState, action) => {
         user: action.payload.user,
       }
 
-    case REGISTER_FAIL:
-      const message =
+    case LOGIN_ERROR:
+      const message = action.payload.email || action.payload.username
+      return {
+        error: true,
+        loading: false,
+        success: false,
+        isAuthenticated: false,
+        message: `Log In failed ${message}`,
+        user: {},
+      }
+
+    case REGISTER_ERROR:
+      const messag =
         action.payload.email || action.payload.username || action.payload.password || action.payload.re_password
       return {
-        isAuthenticated: false,
-        success: false,
         error: true,
-        message: message,
+        loading: false,
+        success: false,
+        isAuthenticated: false,
+        message: `Register failed ${messag}`,
         user: {},
       }
 
     default:
-      return {
-        state,
-      }
+      return logIn
   }
 }

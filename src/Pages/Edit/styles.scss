@@ -1,9 +1,11 @@
-.contain {
+.blog-contain {
   margin: 0;
   background-color: rgba(101, 128, 216, 0.685);
 }
 .form {
   margin: 0 auto;
+  min-width: 75%;
+  padding: 0 2rem;
   color: white;
   background-color: rgba(101, 128, 216, 0.685);
 
@@ -20,8 +22,5 @@
       outline: none;
       border-bottom: 2px solid red;
     }
-  }
-
-  &__btn {
   }
 }

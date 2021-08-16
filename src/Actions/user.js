@@ -1,12 +1,12 @@
 import {
-  LOG_IN_REQ,
   LOG_IN_SUCCESS,
-  LOG_IN_F,
-  LOG_OUT,
-  REGISTER_REQ,
   REGISTER_SUCCESS,
-  REGISTER_FAIL,
+  LOG_OUT,
   LOG_IN_TOKEN,
+  SET_LOADING,
+  DONE_LOADING,
+  SET_ERROR,
+  RESET_ERROR,
 } from '../constants/actionTypes'
 
 import * as api from '../api/index.js'
@@ -14,41 +14,48 @@ import * as api from '../api/index.js'
 export const logInToken = () => async (dispatch) => {
   try {
     const user = JSON.parse(localStorage.getItem('user'))
-
     dispatch({ type: LOG_IN_TOKEN, payload: user })
   } catch (error) {
     console.log(error)
   }
 }
 
+const setLocalStorage = (refresh, access, user) => {
+  localStorage.setItem('refresh', refresh)
+  localStorage.setItem('access', access)
+  localStorage.setItem('user', JSON.stringify(user))
+  localStorage.setItem('exp', Date.now())
+}
+
 export const logIn = (user) => async (dispatch) => {
   try {
-    dispatch({ type: LOG_IN_REQ })
+    dispatch({ type: SET_LOADING })
     const { data } = await api.logIn(user)
 
     dispatch({ type: LOG_IN_SUCCESS, payload: data })
-    localStorage.setItem('refresh', data.refresh)
-    localStorage.setItem('access', data.access)
-    localStorage.setItem('user', JSON.stringify(data.user))
-    localStorage.setItem('exp', Date.now())
+    setLocalStorage(data.refresh, data.access, data.user)
+    dispatch({ type: DONE_LOADING })
   } catch (error) {
-    dispatch({ type: LOG_IN_F, payload: error?.response?.data })
+    dispatch({ type: DONE_LOADING })
+    dispatch({ type: SET_ERROR, payload: error?.response?.data })
     console.log(error)
+    setTimeout(() => dispatch({ type: RESET_ERROR }), 3000)
   }
 }
 
 export const register = (user) => async (dispatch) => {
   try {
-    dispatch({ type: REGISTER_REQ })
+    dispatch({ type: SET_LOADING })
+    const { data } = await api.register(user)
 
-    const res = await api.register(user)
-
-    dispatch({ type: REGISTER_SUCCESS, payload: res.data })
-    localStorage.setItem('refresh', res.data.refresh)
-    localStorage.setItem('access', res.data.access)
+    dispatch({ type: REGISTER_SUCCESS, payload: data })
+    setLocalStorage(data?.refresh, data?.access, data?.user)
+    dispatch({ type: DONE_LOADING })
   } catch (error) {
-    dispatch({ type: REGISTER_FAIL, payload: error.response.data })
+    dispatch({ type: DONE_LOADING })
+    dispatch({ type: SET_ERROR, payload: error?.response?.data })
     console.log(error)
+    setTimeout(() => dispatch({ type: RESET_ERROR }), 3000)
   }
 }
 

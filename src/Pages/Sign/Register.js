@@ -3,8 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import './styles.scss'
 import { register } from '../../Actions/user'
 import { Link, useHistory } from 'react-router-dom'
+import Error from '../../ui/error'
 
 export const Register = () => {
+  const { error, message } = useSelector((s) => s.error)
+
   const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
@@ -12,7 +15,7 @@ export const Register = () => {
 
   const dispatch = useDispatch()
   const history = useHistory()
-  const { loading, success, error, message, isAuthenticated } = useSelector((s) => s.userRegister)
+  const { success, isAuthenticated } = useSelector((s) => s.userLogin)
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -29,8 +32,7 @@ export const Register = () => {
   return (
     <div className='container'>
       <form className='formR' onSubmit={handleSubmit}>
-        {loading && <p>Loading ...</p>}
-        {error && <div>{message}</div>}
+        {error && <Error show={error} message={message} />}
         {success && <div>{message}</div>}
         <h2>Register</h2>
         <div className='form__item'>
@@ -42,6 +44,7 @@ export const Register = () => {
             placeholder='Full Name'
             type='text'
             autoComplete='off'
+            required
           />
         </div>
 
@@ -54,6 +57,7 @@ export const Register = () => {
             placeholder='E-mail'
             type='text'
             autoComplete='off'
+            required
           />
         </div>
 
@@ -66,6 +70,7 @@ export const Register = () => {
             placeholder='Password'
             type='password'
             autoComplete='off'
+            required
           />
         </div>
 
@@ -78,6 +83,7 @@ export const Register = () => {
             placeholder='Confirm Password'
             type='password'
             autoComplete='off'
+            required
           />
         </div>
 

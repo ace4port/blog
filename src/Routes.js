@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { LinearProgress } from '@material-ui/core'
 
 import Menu from './components/Menu/Menu'
 // import { PageFoot, Recommended } from './components/Footer'
@@ -10,13 +11,17 @@ import BlogPage from './Pages/BlogPage'
 import { Edit, Create } from './Pages/Edit'
 import { SignIn, Register } from './Pages/Sign'
 import Settings from './Pages/Settings'
-import Error from './Pages/Error'
+import Error404 from './Pages/Error'
+import { useSelector } from 'react-redux'
 
 // Routes
 const Routes = () => {
+  const loading = useSelector((state) => state.loading.loading)
+  // const { error, message } = useSelector((state) => state.error.error)
   return (
     <Router>
       <Menu />
+      {loading && <Loading />}
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/blogs/:id' component={BlogPage} />
@@ -27,7 +32,7 @@ const Routes = () => {
         <PrivateRoute exact path='/create' component={Create} />
         <PrivateRoute exact path='/article/:id' component={Edit} />
         <PrivateRoute exact path='/user/settings' component={Settings} />
-        <Route component={Error} />
+        <Route component={Error404} />
       </Switch>
       {/* <Recommended /> */}
       <PageFoot />
@@ -43,3 +48,5 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     render={(props) => (localStorage.getItem('refresh') ? <Component {...props} /> : <Redirect to='/logIn' />)}
   />
 )
+
+const Loading = () => <LinearProgress style={{ width: '100%' }} />

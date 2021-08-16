@@ -1,3 +1,39 @@
+.contents {
+  padding: 1rem 2.5rem;
+  background-color: rgba(56, 81, 155, 0.39);
+}
+
+.card {
+  padding: 0 0 0 0.5rem;
+  background-color: rgba(133, 109, 109, 0.158);
+  margin-bottom: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .featured {
+    width: 200px;
+    height: 134px;
+  }
+  h2 {
+    font-size: 2rem;
+    margin-top: 0rem;
+    margin-bottom: 0px;
+  }
+  h3 {
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0px;
+  }
+
+  span {
+    color: rgb(119, 116, 116);
+    font-size: 0.7rem;
+    margin-bottom: 0px;
+  }
+}
+
 .trend {
   background-color: rgba(158, 147, 147, 0.507);
   padding: 1rem 2rem;

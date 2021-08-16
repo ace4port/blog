@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { createPost, resetCreate } from '../../Actions/post'
+import { createPost, resetPost } from '../../Actions/post'
 import './styles.scss'
 
 export const Create = ({ history }) => {
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
-  const dispatch = useDispatch()
-  const { loading, error, success, message } = useSelector((state) => state.postCreate)
 
-  // if you dont do this- it will constantly redirect back to home after creating a post
-  useEffect(() => dispatch(resetCreate()), [dispatch])
+  const dispatch = useDispatch()
+  const { success } = useSelector((state) => state.postR)
+  const { loading } = useSelector((state) => state.loading)
+  const { error, message } = useSelector((state) => state.error)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(createPost({ title, description: desc, category: 1 }))
   }
+  useEffect(() => {
+    return () => dispatch(resetPost())
+  }, [dispatch])
 
   if (success) {
     return <Redirect to='/' />
@@ -25,8 +28,8 @@ export const Create = ({ history }) => {
     <div className='blog-contain'>
       {loading && <p>Loading ...</p>}
       {error && <p>{message}</p>}
-      {success && message}
-      <form className='blog' onSubmit={handleSubmit}>
+      {/* {success && message} */}
+      <form className='blog form' onSubmit={handleSubmit}>
         <h2>Create post</h2>
         <div>
           <label className='form__label' htmlFor='title'>

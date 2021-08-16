@@ -1,31 +1,44 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { getOnePost, updatePost } from '../../Actions/post'
+import { Redirect, useParams } from 'react-router-dom'
+import { getOnePost, updatePost, resetPost } from '../../Actions/post'
 
 export const Edit = () => {
   let { id } = useParams()
-
-  const dispatch = useDispatch()
-  useEffect(() => dispatch(getOnePost(id)), [dispatch, id])
+  const { success } = useSelector((state) => state.postR)
 
   const post = useSelector(state => state.postR.post)
 
-  const [title, setTitle] = useState(post.title)
-  const [desc, setDesc] = useState(post.description)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getOnePost(id))
+    setTitle(s => post.title)
+    setDesc(s => post.description)
+
+    return () =>  dispatch(resetPost())
+  }, [dispatch, id, post.title, post.description])
+
+  // useEffect(() => dispatch(resetPost()), [dispatch])
+
+  const [title, setTitle] = useState('')
+  const [desc, setDesc] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(updatePost(id, {title, description: desc, category: 1}))
   }
-  
+
+  if(success) {
+    return <Redirect to='/' />
+  }
+
   return (
       <div className='blog-contain'>
       {/* {loading && <p>Loading ...</p>} */}
       {/* {error && <p>{message}</p>} */}
       {/* {success && message} */}
-      <form className='blog' onSubmit={handleSubmit}>
-        <h2>Create post</h2>
+      <form className='blog form' onSubmit={handleSubmit}>
+        <h2>Update post</h2>
         <div>
           <label className='form__label' htmlFor='title'>
             Title
@@ -37,7 +50,7 @@ export const Edit = () => {
             id='title'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required
+            required  
             maxLength='200'
           />
         </div>
