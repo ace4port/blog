@@ -4,16 +4,20 @@ import ClapIcon from '../Icons/ClapIcon'
 import CommentIcon from '../Icons/CommentIcon'
 import SocialIcons from '../Icons/SocialIcons'
 
-export const LikeComment = () => {
+export const LikeComment = ({ likes, comments, setShowComments }) => {
   return (
     <div className='comment'>
       <div>
         <div className='icon'>
           <ClapIcon />
+          {likes ? likes : ''}
         </div>
         <p className='text'></p>
         <div className='icon'>
-          <CommentIcon />
+          <button onClick={() => setShowComments((s) => !s)}>
+            <CommentIcon />
+          </button>
+          {comments}
         </div>
         <p className='text'></p>
       </div>

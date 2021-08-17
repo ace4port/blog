@@ -8,8 +8,9 @@ import Error from '../../ui/error'
 
 const Head = ({ title, desc, featImg, id }) => {
   const dispatch = useDispatch()
-  const { success } = useSelector((state) => state.postR)
+  const { post, success } = useSelector((state) => state.postR)
   const { error, message } = useSelector((state) => state.error)
+  const { user } = useSelector((s) => s.userLogin)
 
   let img =
     'https://images.unsplash.com/photo-1619683172106-ff242162eb4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp'
@@ -31,16 +32,17 @@ const Head = ({ title, desc, featImg, id }) => {
           <Title title={title} />
           {/* <SubTitle title='One line description of the blog' /> */}
         </div>
-
         {/* Edit delete functions */}
-        <div className='head__top__left'>
-          <Link to={`/article/${id}`} className='head__icon'>
-            <Edit id={id} />
-          </Link>
-          <button className='head__icon' onClick={() => dispatch(deletePost(id))}>
-            <Delete />
-          </button>
-        </div>
+        {post?.user_detail?.id === user?.id && (
+          <div className='head__top__left'>
+            <Link to={`/article/${id}`} className='head__icon'>
+              <Edit id={id} />
+            </Link>
+            <button className='head__icon' onClick={() => dispatch(deletePost(id))}>
+              <Delete />
+            </button>
+          </div>
+        )}
       </div>
 
       <AuthorDetailed />

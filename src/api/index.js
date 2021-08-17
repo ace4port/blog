@@ -20,3 +20,7 @@ export const updatePost = (id, updatedPost, config) => axios.patch(`${url}/posts
 export const deletePost = (id, config) => axios.delete(`${url}/posts/${id}/`, config)
 
 // export const likePost = (id) => axios.patch(`${url}/${id}/likePost`)
+export const fetchComments = (id) => axios.get(`${url}/posts/${id}/comments/`)
+export const postComment = (comment, config) => axios.post(`${url}/comments/`, comment, config)
+export const updateComment = (id, comment, config) => axios.patch(`${url}/comments/${id}/`, comment, config)
+export const deleteComment = (id, config) => axios.delete(`${url}/comments/${id}/`, config)

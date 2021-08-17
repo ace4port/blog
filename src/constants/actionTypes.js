@@ -38,7 +38,14 @@ export const DELETE = 'DELETE'
 export const DELETE_SUCCESS = 'DELETE_SUCCESS'
 export const DELETE_ERROR = 'DELETE_ERROR'
 // export const LIKE = 'LIKE'
-// export const COMMENT = 'COMMENT'
+
+export const FETCH_COMMENTS = 'FETCH_COMMENTS'
+export const COMMENT_CREATE = 'COMMENT_CREATE'
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+
+export const COMMENT_LOADING = 'COMMENT_LOADING'
+export const COMMENT_ERROR = 'COMMENT_ERROR'
 
 // follow
 // export const FOLLOW_USER = 'FOLLOW_USER'
