@@ -9,7 +9,6 @@ import Aside from '../../ui/Aside'
 import Error from '../../ui/error'
 import './styles.scss'
 
-import { logInToken } from '../../Actions/user'
 import { getPosts } from '../../Actions/posts'
 import { LinearProgress } from '@material-ui/core'
 
@@ -18,8 +17,6 @@ const Home = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { error, message } = useSelector((s) => s.error)
 
-  // attempt to log in here using tokens
-  useEffect(() => localStorage.getItem('user') && dispatch(logInToken()), [dispatch])
   // get posts
   useEffect(() => dispatch(getPosts()), [dispatch])
   const { articles } = useSelector((state) => state.posts)

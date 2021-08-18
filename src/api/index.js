@@ -9,18 +9,30 @@ export const logOut = () => axios.post(`${url}/user_logout`)
 
 export const refresh = (tokenR) => axios.post(`${url}/user_refresh_token/`, { refresh: tokenR })
 
+export const user = (id) => axios.get(`${url}/users/${id}/`)
+
 // Home page
 export const fetchPosts = () => axios.get(`${url}/posts?limit=5&offset=0/`)
-export const fetchTrending = () => axios.get(`${url}/posts?limit=2&offset=0/`)
 
-// Single post
+// Single post crud
 export const fetchOne = (id) => axios.get(`${url}/posts/${id}/`)
 export const createPost = (newPost, config) => axios.post(`${url}/posts/`, newPost, config)
 export const updatePost = (id, updatedPost, config) => axios.patch(`${url}/posts/${id}/`, updatedPost, config)
 export const deletePost = (id, config) => axios.delete(`${url}/posts/${id}/`, config)
 
-// export const likePost = (id) => axios.patch(`${url}/${id}/likePost`)
+// comment crud
 export const fetchComments = (id) => axios.get(`${url}/posts/${id}/comments/`)
 export const postComment = (comment, config) => axios.post(`${url}/comments/`, comment, config)
 export const updateComment = (id, comment, config) => axios.patch(`${url}/comments/${id}/`, comment, config)
 export const deleteComment = (id, config) => axios.delete(`${url}/comments/${id}/`, config)
+// comment reply actions : Note- They are not implemented in redux
+export const fetchReplies = (id) => axios.get(`${url}/comments/${id}/replies/`)
+export const postReply = (reply, config) => axios.post(`${url}/replies/`, reply, config)
+export const updateReply = (id, reply, config) => axios.patch(`${url}/replies/${id}/`, reply, config)
+export const deleteReply = (id, config) => axios.delete(`${url}/replies/${id}/`, config)
+
+// Like and unlike post
+export const likePost = (id, config) => axios.put(`${url}/posts/${id}/likes/`, {}, config)
+
+// Follow unfollow user
+export const follow = (id, config) => axios.put(`${url}/users/${id}/followers/`, config)

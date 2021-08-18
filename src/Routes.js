@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { LinearProgress } from '@material-ui/core'
 
@@ -12,11 +12,16 @@ import { Edit, Create } from './Pages/Edit'
 import { SignIn, Register } from './Pages/Sign'
 import Settings from './Pages/Settings'
 import Error404 from './Pages/Error'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { logInToken } from './Actions/user'
 
 // Routes
 const Routes = () => {
+  const dispatch = useDispatch()
   const loading = useSelector((state) => state.loading.loading)
+
+  // attempt to log in here using tokens
+  useEffect(() => localStorage.getItem('user') && dispatch(logInToken()), [dispatch])
   // const { error, message } = useSelector((state) => state.error.error)
   return (
     <Router>

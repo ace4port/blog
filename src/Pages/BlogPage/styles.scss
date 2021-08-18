@@ -2,6 +2,7 @@
 
 .blog-contain {
   margin: 0;
+  padding: 0 0 1rem 0;
   background-color: rgba(101, 128, 216, 0.685);
 }
 
@@ -70,16 +71,131 @@
   }
 }
 
+.footer {
+  padding-bottom: 0.3rem;
+}
+
 .loader {
-  // background-color: rebeccapurple;
   display: grid;
   align-items: center;
   justify-content: center;
 }
 
+.comment__form {
+  width: 85%;
+  color: white;
+  background-color: inherit;
+  border: none;
+  font-size: 120%;
+  margin: 0 1rem;
+  border-bottom: 2px solid rgba(116, 95, 95, 0.678);
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(10, 8, 8);
+  }
+}
+
 .comment-contain {
   background-color: rgba(102, 51, 153, 0.349);
+  padding: 0.3rem 0.5rem;
   display: flex;
-  justify-content: space-between;
-  padding: 0 0.5rem;
+  flex-direction: row;
+
+  &__authorthumb {
+    display: flex;
+    margin: auto;
+    align-self: center;
+  }
+
+  .comment__main {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin: 0 0 0 0.5rem;
+    flex-grow: 1;
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+      .author__name {
+        margin: 0;
+        font-weight: 600;
+      }
+      .comment__date {
+        margin: 0;
+        font-weight: 500;
+      }
+    }
+    .content {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+  .comment__edit {
+    display: flex;
+    flex-direction: column;
+    padding: 0rem;
+    margin: 0;
+  }
+}
+
+.reply__contain {
+  padding: 0;
+  margin: 0;
+  background-color: rgba(102, 51, 153, 0.349);
+
+  .reply__btn {
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    margin: 0 1rem;
+    border-radius: 2rem;
+
+    &:hover {
+      background-color: rgb(119, 100, 138);
+    }
+  }
+}
+.reply__one {
+  @extend .comment-contain;
+  background-color: rgba(102, 51, 153, 0.5);
+  margin: 0.2rem 0 0 2rem;
+}
+
+.comment__input {
+  // box-sizing: border-box;
+  border: none;
+  height: 2rem;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  padding-left: 0.5rem;
+  background-color: rgba(192, 169, 216, 0.5);
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+  }
+}
+.comment__submit {
+  border: none;
+  color: white;
+  margin-left: 0.8rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(192, 169, 216, 0.5);
+
+  &:hover {
+    background-color: rgba(192, 169, 216, 0.8);
+    letter-spacing: 0.1rem;
+  }
 }

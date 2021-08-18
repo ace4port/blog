@@ -5,9 +5,7 @@ import {
   COMMENT_ERROR,
   UPDATE_COMMENT,
   DELETE_COMMENT,
-  // DONE_LOADING,
 } from '../constants/actionTypes'
-
 import { tokenValidate } from './post'
 
 import * as api from '../api/index.js'

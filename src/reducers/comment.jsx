@@ -5,9 +5,7 @@ import {
   COMMENT_LOADING,
   COMMENT_ERROR,
   UPDATE_COMMENT,
-  DELETE_COMMENT,
-  // DELETE_SUCCESS,
-  // UPDATE_SUCCESS,
+  DELETE_COMMENT, 
 } from '../constants/actionTypes'
 // import { FETCH_SUCCESS, RESET } from '../constants/actionTypes'
 
@@ -46,23 +44,3 @@ export const comments = (state = { comments: [], success: false, loading: false 
       return state
   }
 }
-
-// // do crud operations on post
-// export const postR = (articles = { post: {}, success: false, message: '' }, action) => {
-//   switch (action.type) {
-//     case FETCH_ONE_SUCCESS:
-//       return { ...articles, post: action.payload }
-//     case REMOVE_ONE:
-//       return {}
-//     case CREATE_SUCCESS:
-//       return { ...articles, message: 'Success', success: true }
-//     case UPDATE_SUCCESS:
-//       return { ...articles, success: true, message: 'New post created' }
-//     case DELETE_SUCCESS:
-//       return { ...articles, message: 'Post deleted', success: true }
-//     case RESET:
-//       return {...articles, success: false}
-//     default:
-//       return articles
-//   }
-// }
