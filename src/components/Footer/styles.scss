@@ -8,6 +8,21 @@
     margin: 0 0.7rem 0 2rem;
   }
 
+  .icons__contain {
+    display: inline;
+    cursor: pointer;
+    .icons__btn {
+      border: none;
+      display: inline;
+      background-color: inherit;
+      border-radius: 2rem;
+
+      &:hover {
+        background-color: rgba(95, 57, 57, 0.404);
+      }
+    }
+  }
+
   .text {
     display: inline;
     font-size: 20px;

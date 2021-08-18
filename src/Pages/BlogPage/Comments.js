@@ -144,8 +144,9 @@ const Replies = ({ id, repliess }) => {
   return (
     <div className='reply__contain'>
       {loading && <LinearProgress />}
+      {writeReply && <EditForm content={reply} submit={submitReply} setInput={setReply} />}
       <button className='reply__btn' onClick={() => setWriteReply(!writeReply)}>
-        Write a reply
+        {!writeReply ? 'Write a reply' : 'Cancel'}
       </button>
 
       <em>
@@ -155,7 +156,6 @@ const Replies = ({ id, repliess }) => {
           </button>
         )}
       </em>
-      {writeReply && <EditForm content={reply} submit={submitReply} setInput={setReply} />}
 
       {showReplies &&
         replyList.map((article, index) => (

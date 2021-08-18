@@ -7,6 +7,7 @@ import {
   DONE_LOADING,
   SET_ERROR,
   RESET_ERROR,
+  LIKE_POST,
 } from '../constants/actionTypes'
 import { CREATE_REQ, CREATE_SUCCESS, CREATE_ERROR } from '../constants/actionTypes'
 import { DELETE_SUCCESS } from '../constants/actionTypes'
@@ -95,12 +96,15 @@ export const deletePost = (id) => async (dispatch) => {
   }
 }
 
-// export const likePost = (id) => async (dispatch) => {
-//   try {
-//     const { data } = await api.likePost(id)
+export const likePost = (id, user_Id) => async (dispatch) => {
+  try {
+    const token = await tokenValidate()
+    const config = { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
+    await api.likePost(id, config)
 
-//     dispatch({ type: LIKE, payload: data })
-//   } catch (error) {
-//     console.log(error.message)
-//   }
-// }
+    dispatch({ type: LIKE_POST, payload: user_Id })
+  } catch (error) {
+    dispatch({ type: SET_ERROR, payload: error, message: 'Like error' })
+    console.log(error.message)
+  }
+}

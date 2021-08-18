@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { tokenValidate } from '../../Actions/post'
-import * as api from '../../api/index'
+import { likePost } from '../../Actions/post'
 
 import ClapIcon from '../Icons/ClapIcon'
 import CommentIcon from '../Icons/CommentIcon'
@@ -9,30 +9,20 @@ import SocialIcons from '../Icons/SocialIcons'
 
 export const LikeComment = ({ likes, comments, setShowComments }) => {
   const { id } = useParams()
-
-  const [like, setLike] = useState(likes)
-  const likePost = async () => {
-    const token = await tokenValidate()
-    const config = { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
-    await api.likePost(id, config)
-    setLike((like) => (like ? like++ : like--))
-  }
+  const dispatch = useDispatch()
+  const user_id = useSelector((s) => s.userLogin?.user?.id)
 
   return (
     <div className='comment'>
-      <div>
-        <button className='icon' onClick={likePost}>
+      <div className='icons__contain'>
+        <button className='icons__btn' onClick={() => dispatch(likePost(id, user_id))}>
           <ClapIcon />
+          {likes.length}
         </button>
-        {like}
-        <p className='text'></p>
-        <div className='icon'>
-          <button onClick={() => setShowComments((s) => !s)}>
-            <CommentIcon />
-          </button>
+        <button className='icons__btn' onClick={() => setShowComments((s) => !s)}>
+          <CommentIcon />
           {comments}
-        </div>
-        <p className='text'></p>
+        </button>
       </div>
       <div className='icon'>
         <SocialIcons />

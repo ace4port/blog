@@ -1,4 +1,4 @@
-import { FETCH_ONE_SUCCESS, REMOVE_ONE, CREATE_SUCCESS, DELETE_SUCCESS, UPDATE_SUCCESS } from '../constants/actionTypes'
+import { FETCH_ONE_SUCCESS, REMOVE_ONE, CREATE_SUCCESS, DELETE_SUCCESS, UPDATE_SUCCESS, LIKE_POST } from '../constants/actionTypes'
 import { FETCH_SUCCESS, RESET } from '../constants/actionTypes'
 
 //fetch Home page article summary
@@ -26,6 +26,20 @@ export const postR = (articles = { post: {}, success: false, message: '' }, acti
       return { ...articles, message: 'Post deleted', success: true }
     case RESET:
       return {...articles, success: false}
+      
+    case LIKE_POST:
+      const disLiked = articles.post.likes.find(v => v === action.payload)
+
+      // if disliked ie value exists in array- remove item else add
+      if(disLiked) {
+        const newLikes = articles.post.likes.filter(v => v !==action.payload)
+        const newPost = {...articles.post, likes: newLikes}
+        return {...articles, success: true, message: 'Post Unliked', post: newPost}
+      }
+      const newLikes = articles.post.likes.concat(action.payload)
+      const newPost = {...articles.post, likes: newLikes}
+      return {...articles, success: true, message: 'Post Liked', post:  newPost }
+      
     default:
       return articles
   }
