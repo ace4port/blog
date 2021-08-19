@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { logIn } from '../../Actions/user'
+import { logIn, logInToken } from '../../Actions/user'
 import Error from '../../ui/error'
 import './styles.scss'
 
@@ -19,7 +19,8 @@ export const SignIn = () => {
     if (isAuthenticated) {
       history.push('/')
     }
-  }, [history, isAuthenticated])
+    dispatch(logInToken())
+  }, [history, isAuthenticated, dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault()

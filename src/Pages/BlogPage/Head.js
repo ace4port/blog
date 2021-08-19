@@ -6,9 +6,9 @@ import { deletePost, resetPost } from '../../Actions/post'
 import { AuthorDetailed } from '../../components/Author'
 import Error from '../../ui/error'
 
-const Head = ({ title, desc, featImg, id }) => {
+const Head = ({ title, desc, featImg, id, text, follow }) => {
   const dispatch = useDispatch()
-  const { post, success } = useSelector((state) => state.postR)
+  const { post, successDelete } = useSelector((state) => state.postR)
   const { error, message } = useSelector((state) => state.error)
   const { user } = useSelector((s) => s.userLogin)
 
@@ -20,7 +20,7 @@ const Head = ({ title, desc, featImg, id }) => {
     return () => dispatch(resetPost())
   }, [dispatch])
 
-  if (success) {
+  if (successDelete) {
     return <Redirect to='/' />
   }
 
@@ -45,7 +45,7 @@ const Head = ({ title, desc, featImg, id }) => {
         )}
       </div>
 
-      <AuthorDetailed />
+      <AuthorDetailed text={text} follow={follow} />
       <FeatImage feat={img} alt={cap} />
     </>
   )

@@ -7,7 +7,7 @@ import './menu.scss'
 import { logOut } from '../../Actions/user'
 
 const Menu = () => {
-  const { isAuthenticated } = useSelector((s) => s.userLogin)
+  const { isAuthenticated, user } = useSelector((s) => s.userLogin)
   const dispatch = useDispatch()
   return (
     <div className='nav'>
@@ -45,7 +45,11 @@ const Menu = () => {
                   Log Out
                 </Link>
               </li>
-              <Avatar round variant='lg' />
+              <li>
+                <Link to='/user/settings'>
+                  <Avatar round variant='lg' />
+                </Link>
+              </li>
             </>
           ) : (
             <>
@@ -56,6 +60,7 @@ const Menu = () => {
               </li>
             </>
           )}
+          {isAuthenticated && <li>{user.username}</li>}
           {/* <li className='theme__select'>
             <label>Select theme</label>
             <select>

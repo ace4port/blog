@@ -4,7 +4,7 @@ import Avatar from '../Avatar'
 import { FollowBtn } from '../Buttons'
 import './styles.scss'
 
-export const AuthorFollow = () => {
+export const AuthorFollow = ({ text, follow }) => {
   const post = useSelector((state) => state.postR.post)
   const desc = 'This author is shy and didnt introduce self'
 
@@ -15,11 +15,11 @@ export const AuthorFollow = () => {
 
         <div className='author__follow'>
           <span>Written By:</span>
-          <h4>{post?.user_detail?.username || 'John Doe'}</h4>
+          <h4>{post?.user_detail?.username}</h4>
           <span className='desc'>{desc}</span>
         </div>
       </div>
-      <FollowBtn />
+      <FollowBtn text={text} follow={follow} />
     </div>
   )
 }

@@ -11,6 +11,16 @@
   .icons__contain {
     display: inline;
     cursor: pointer;
+
+    .icons__btn--liked {
+      border: none;
+      background-color: rgb(143, 125, 161);
+      border-radius: 2rem;
+
+      &:hover {
+        background-color: rgba(95, 57, 57, 0.404);
+      }
+    }
     .icons__btn {
       border: none;
       display: inline;

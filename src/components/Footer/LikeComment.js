@@ -10,14 +10,18 @@ import SocialIcons from '../Icons/SocialIcons'
 export const LikeComment = ({ likes, comments, setShowComments }) => {
   const { id } = useParams()
   const dispatch = useDispatch()
-  const user_id = useSelector((s) => s.userLogin?.user?.id)
+  // const { likes } = useSelector((s) => s.postR.post.likes)
 
+  const user_id = useSelector((s) => s.userLogin?.user?.id)
+  const like = likes.find((v) => v === user_id)
   return (
     <div className='comment'>
       <div className='icons__contain'>
-        <button className='icons__btn' onClick={() => dispatch(likePost(id, user_id))}>
+        <button
+          className={`${!like ? 'icons__btn' : 'icons__btn--liked'}`}
+          onClick={() => dispatch(likePost(id, user_id))}>
           <ClapIcon />
-          {likes.length}
+          {likes.length ? likes.length : ''}
         </button>
         <button className='icons__btn' onClick={() => setShowComments((s) => !s)}>
           <CommentIcon />

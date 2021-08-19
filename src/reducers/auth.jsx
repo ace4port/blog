@@ -5,6 +5,7 @@ import {
   REGISTER_SUCCESS,
   LOGIN_ERROR,
   REGISTER_ERROR,
+  FOLLOW_USER,
 } from '../constants/actionTypes'
 
 const initState = {
@@ -67,6 +68,11 @@ export const userLogin = (logIn = initState, action) => {
         isAuthenticated: false,
         message: `Log In failed ${message}`,
         user: {},
+      }
+
+    case FOLLOW_USER:
+      return {
+        ...logIn,
       }
 
     case REGISTER_ERROR:

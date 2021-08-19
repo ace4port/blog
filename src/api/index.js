@@ -35,4 +35,4 @@ export const deleteReply = (id, config) => axios.delete(`${url}/replies/${id}/`,
 export const likePost = (id, config) => axios.put(`${url}/posts/${id}/likes/`, {}, config)
 
 // Follow unfollow user
-export const follow = (id, config) => axios.put(`${url}/users/${id}/followers/`, config)
+export const follow = (id, config) => axios.put(`${url}/users/${id}/followers/`, {}, config)

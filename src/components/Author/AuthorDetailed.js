@@ -6,7 +6,7 @@ import { FollowBtn } from '../Buttons'
 
 import './styles.scss'
 
-export const AuthorDetailed = () => {
+export const AuthorDetailed = ({ text, follow }) => {
   const post = useSelector((state) => state.postR.post)
 
   let date = new Date(post.updated_at)
@@ -20,8 +20,8 @@ export const AuthorDetailed = () => {
         </div>
         <div className='author__details__desc'>
           <div>
-            <h4>{post?.user_detail?.username || 'John Doe'}</h4>
-            <FollowBtn variant='small' />
+            <h4>{post?.user_detail?.username}</h4>
+            <FollowBtn variant='small' text={text} follow={follow} />
           </div>
           <div className='author__details__date'>
             <span>{date}</span>

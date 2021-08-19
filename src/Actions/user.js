@@ -7,9 +7,11 @@ import {
   DONE_LOADING,
   SET_ERROR,
   RESET_ERROR,
+  FOLLOW_USER,
 } from '../constants/actionTypes'
 
 import * as api from '../api/index.js'
+import { tokenValidate } from './post'
 
 export const logInToken = () => async (dispatch) => {
   try {
@@ -69,7 +71,25 @@ export const logOut = () => async (dispatch) => {
   }
 }
 
-export const update = () => async (dispatch) => {
+export const updateUser = (id, user) => async (dispatch) => {
   // Logic to update account details
-  // Change password, name, etc
+  // Change name, last name, password, etc
+}
+
+export const followUser = (user_id) => async (dispatch) => {
+  try {
+    dispatch({ type: SET_LOADING })
+
+    const token = await tokenValidate()
+    const config = { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
+    await api.follow(user_id, config)
+
+    dispatch({ type: FOLLOW_USER })
+    dispatch({ type: DONE_LOADING })
+  } catch (error) {
+    dispatch({ type: DONE_LOADING })
+    dispatch({ type: SET_ERROR, payload: error?.response?.data })
+    console.log(error)
+    setTimeout(() => dispatch({ type: RESET_ERROR }), 3000)
+  }
 }
