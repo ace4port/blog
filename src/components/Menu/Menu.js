@@ -13,7 +13,7 @@ const Menu = () => {
     <div className='nav'>
       <div className='nav__logo'>
         <Link to='/'>
-          <h2>TechKTM</h2>
+          <h2>Tech Blog</h2>
         </Link>
       </div>
       <div>
@@ -60,7 +60,7 @@ const Menu = () => {
               </li>
             </>
           )}
-          {isAuthenticated && <li>{user.username}</li>}
+          {isAuthenticated && <li>{user?.username}</li>}
           {/* <li className='theme__select'>
             <label>Select theme</label>
             <select>

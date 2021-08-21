@@ -8,6 +8,7 @@ import {
   SET_ERROR,
   RESET_ERROR,
   FOLLOW_USER,
+  UPDATE_USER,
 } from '../constants/actionTypes'
 
 import * as api from '../api/index.js'
@@ -71,8 +72,29 @@ export const logOut = () => async (dispatch) => {
   }
 }
 
-export const updateUser = (id, user) => async (dispatch) => {
-  // Logic to update account details
+export const updateUser = (id, details) => async (dispatch) => {
+  try {
+    const token = await tokenValidate()
+    const config = { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
+    // Logic to update account details
+    await api.updateUser(id, details, config)
+    dispatch({ type: UPDATE_USER })
+  } catch (error) {
+    console.log(error)
+  }
+  // Change name, last name, password, etc
+}
+
+export const updateProfile = (id, formData) => async (dispatch) => {
+  try {
+    const token = await tokenValidate()
+    const config = { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
+    // Logic to update account details
+    await api.updateProfile(id, formData, config)
+    dispatch({ type: UPDATE_USER })
+  } catch (error) {
+    console.log(error)
+  }
   // Change name, last name, password, etc
 }
 

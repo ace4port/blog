@@ -34,6 +34,7 @@ export const Register = () => {
       <form className='formR' onSubmit={handleSubmit}>
         {error && <Error show={error} message={message} />}
         {success && <div>{message}</div>}
+
         <h2>Register</h2>
         <div className='form__item'>
           <label htmlFor='name'>Username</label>
@@ -55,7 +56,7 @@ export const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
             name='email'
             placeholder='E-mail'
-            type='text'
+            type='email'
             autoComplete='off'
             required
           />

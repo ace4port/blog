@@ -13,6 +13,7 @@ import { CREATE_REQ, CREATE_SUCCESS, CREATE_ERROR } from '../constants/actionTyp
 import { DELETE_SUCCESS } from '../constants/actionTypes'
 
 import * as api from '../api/index.js'
+import { logOut } from './user'
 
 export const getOnePost = (id) => async (dispatch) => {
   try {
@@ -37,8 +38,18 @@ export const resetCreate = () => async (dispatch) => dispatch({ type: RESET })
 
 export const tokenValidate = async () => {
   const exp = parseInt(localStorage.getItem('exp'))
+  const ref_exp = parseInt(localStorage.getItem('r_exp'))
+
+  if (Date.now() >= ref_exp + 8640000) {
+    console.log('Refresh token expired')
+    localStorage.clear()
+    logOut()
+    return
+  }
+
   if (Date.now() >= exp + 600000) {
     const tokenR = localStorage.getItem('refresh')
+    console.log('Access token expired')
     const access = await api.refresh(tokenR)
     localStorage.setItem('access', access)
     const tokenA = access?.data?.access

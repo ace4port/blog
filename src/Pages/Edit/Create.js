@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { createPost, resetPost } from '../../Actions/post'
 import './styles.scss'
 
@@ -22,8 +21,9 @@ export const Create = ({ history }) => {
   }, [dispatch])
 
   if (success) {
-    return <Redirect to='/' />
+    history.push('/')
   }
+
   return (
     <div className='blog-contain'>
       {loading && <p>Loading ...</p>}

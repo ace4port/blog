@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
-import { logIn, logInToken } from '../../Actions/user'
+import { Link } from 'react-router-dom'
+import { logIn } from '../../Actions/user'
 import Error from '../../ui/error'
 import './styles.scss'
 
-export const SignIn = () => {
+export const SignIn = ({ history }) => {
   let { success, isAuthenticated } = useSelector((s) => s.userLogin)
   const { error, message } = useSelector((s) => s.error)
 
   const dispatch = useDispatch()
-  const history = useHistory()
 
   const [username, setUsername] = useState('')
   const [pass, setPass] = useState('')
@@ -19,8 +18,7 @@ export const SignIn = () => {
     if (isAuthenticated) {
       history.push('/')
     }
-    dispatch(logInToken())
-  }, [history, isAuthenticated, dispatch])
+  }, [history, success, isAuthenticated])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -29,10 +27,10 @@ export const SignIn = () => {
 
   return (
     <div className='container'>
-      <form className='form' autoComplete='off'>
-        {error && <Error show={error} message={message} />}
+      <form className='form' onSubmit={handleSubmit}>
+        {error && <Error show={error} message={message} severity='error' />}
+        {success && <Error show={success} message={message} severity='success' />}
 
-        {success && <p>{message}</p>}
         <h2>Sign In</h2>
         <div className='form__item'>
           <label htmlFor='username'>Username</label>
@@ -42,6 +40,8 @@ export const SignIn = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder='username'
+            autoComplete='username'
+            autoFocus
             required
           />
         </div>
@@ -59,7 +59,7 @@ export const SignIn = () => {
           />
         </div>
 
-        <button className='form__btn' type='submit' onClick={handleSubmit}>
+        <button className='form__btn' type='submit'>
           Sign In
         </button>
 

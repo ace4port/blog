@@ -10,9 +10,11 @@ export const logOut = () => axios.post(`${url}/user_logout`)
 export const refresh = (tokenR) => axios.post(`${url}/user_refresh_token/`, { refresh: tokenR })
 
 export const user = (id) => axios.get(`${url}/users/${id}/`)
+export const updateUser = (id, details, config) => axios.put(`${url}/users/${id}/`, details, config)
+export const updateProfile = (id, formData, config) => axios.put(`${url}/users/${id}/profile/`, formData, config)
 
 // Home page
-export const fetchPosts = () => axios.get(`${url}/posts?limit=5&offset=0/`)
+export const fetchPosts = () => axios.get(`${url}/posts?limit=5/`)
 
 // Single post crud
 export const fetchOne = (id) => axios.get(`${url}/posts/${id}/`)

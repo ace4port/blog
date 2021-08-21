@@ -6,6 +6,8 @@ export const LOGIN_ERROR = 'LOGIN_ERROR'
 export const LOG_OUT = 'LOG_OUT'
 
 export const LOG_IN_TOKEN = 'LOG_IN_TOKEN'
+export const UPDATE_USER = 'UPDATE_USER'
+export const UPDATE_PROFILE = 'UPDATE_PROFILE'
 
 // Home page actions
 export const FETCH_START = 'FETCH_START'

@@ -11,6 +11,7 @@ import BlogPage from './Pages/BlogPage'
 import { Edit, Create } from './Pages/Edit'
 import { SignIn, Register } from './Pages/Sign'
 import Settings from './Pages/Settings'
+import Profile from './Pages/Settings/Profile'
 import Error404 from './Pages/Error'
 import { useSelector, useDispatch } from 'react-redux'
 import { logInToken } from './Actions/user'
@@ -37,6 +38,7 @@ const Routes = () => {
         <PrivateRoute exact path='/create' component={Create} />
         <PrivateRoute exact path='/article/:id' component={Edit} />
         <PrivateRoute exact path='/user/settings' component={Settings} />
+        <PrivateRoute exact path='/user/profile' component={Profile} />
         <Route component={Error404} />
       </Switch>
       {/* <Recommended /> */}

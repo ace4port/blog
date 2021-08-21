@@ -61,7 +61,7 @@ const Featured = () => {
     <div className='contents'>
       <div className='first'>
         {articles.slice(3, 5).map((post, i) => (
-          <Card key={i} id={i} title={post.title} author={post.user_detail} slug={post.slug} />
+          <Card key={i} id={post.id} title={post.title} author={post.user_detail} slug={post.slug} />
         ))}
       </div>
       {/* Categories-- future implementation */} {/* Fetch categories */}
