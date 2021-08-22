@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import TrendingIcon from '../../components/Icons/TrendingIcon'
@@ -17,10 +17,15 @@ const Home = () => {
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
   const { error, message } = useSelector((s) => s.error)
+  const [page, setPage] = useState(1)
 
   // get posts
   useEffect(() => dispatch(getPosts()), [dispatch])
   const { articles } = useSelector((state) => state.posts)
+
+  const handlePage = (e, v) => {
+    setPage(v)
+  }
 
   return (
     <>
@@ -32,7 +37,7 @@ const Home = () => {
         <>
           <Trending />
           <Featured />
-          <Pagination count={20 / 5} variant='outlined' shape='rounded' />
+          <Pagination count={20 / 5} page={page} onChange={handlePage} variant='outlined' shape='rounded' />
         </>
       )}
     </>
