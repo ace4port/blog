@@ -1,20 +1,21 @@
 import React from 'react'
 import './styles.scss'
 
-const Aside = () => {
-  let x = []
-  for (let i = 0; i < 10; i++) {
-    x.push(<Button key={i} id={i + 1} />)
-  }
+const Aside = ({ categories }) => {
+  console.log(categories)
   return (
     <div className='aside'>
       <h4>Discover more</h4>
-      <div>{x}</div>
-      <a href='/'>See all topics</a>
+      <div>
+        {categories.map((categ, i) => (
+          <Button key={i} category={categ.c_name} />
+        ))}
+      </div>
+      {/* <a href='/'>See all topics</a> */}
     </div>
   )
 }
 
 export default Aside
 
-const Button = ({ id }) => <button>Category{id}</button>
+const Button = ({ category }) => <button>{category}</button>

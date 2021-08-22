@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 // import parse from 'html-react-parser'
@@ -48,7 +48,14 @@ const BlogPage = () => {
         {loading && <MyLoader2 />}
         {post.id && (
           <>
-            <Head title={post.title} desc={post.description} id={id} text={text} follow={follow} />
+            <Head
+              title={post.title}
+              desc={post.description}
+              id={id}
+              text={text}
+              thumb={post.thumbnail}
+              follow={follow}
+            />
             <Body body={post.description} />
             <Footer likes={post.likes} comment={post.comments} id={id} text={text} follow={follow} />
           </>
@@ -62,4 +69,7 @@ export default BlogPage
 
 // const Body = ({ body }) => <div className='blog__body'>{parse(body)}</div>
 
-const Body = ({ body }) => <Editor data={body} disabled={true} />
+const Body = ({ body }) => {
+  const [data, setData] = useState(body)
+  return <Editor data={data} setData={setData} disabled={true} />
+}

@@ -8,6 +8,7 @@ import {
   SET_ERROR,
   RESET_ERROR,
   LIKE_POST,
+  SET_CATEGORIES,
 } from '../constants/actionTypes'
 import { CREATE_REQ, CREATE_SUCCESS, CREATE_ERROR } from '../constants/actionTypes'
 import { DELETE_SUCCESS } from '../constants/actionTypes'
@@ -119,6 +120,15 @@ export const likePost = (id, user_Id) => async (dispatch) => {
     dispatch({ type: LIKE_POST, payload: user_Id })
   } catch (error) {
     dispatch({ type: SET_ERROR, payload: error, message: 'Like error' })
+    console.log(error.message)
+  }
+}
+
+export const getCategories = () => async (dispatch) => {
+  try {
+    const { data } = await api.getCategories()
+    dispatch({ type: SET_CATEGORIES, payload: data })
+  } catch (error) {
     console.log(error.message)
   }
 }

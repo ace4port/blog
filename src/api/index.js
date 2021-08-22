@@ -38,3 +38,6 @@ export const likePost = (id, config) => axios.put(`${url}/posts/${id}/likes/`, {
 
 // Follow unfollow user
 export const follow = (id, config) => axios.put(`${url}/users/${id}/followers/`, {}, config)
+
+// Fetch categories
+export const getCategories = () => axios.get(`${url}/categories/`)

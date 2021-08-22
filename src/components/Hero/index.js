@@ -8,7 +8,7 @@ const Hero = ({ name }) => (
     <h4>Hello {name}</h4>
     <span>Motto line</span>
     <br />
-    <button>Join our newsletter</button>
+    <button disabled>Join our newsletter</button>
   </div>
 )
 

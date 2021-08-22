@@ -5,13 +5,14 @@ import TrendingIcon from '../../components/Icons/TrendingIcon'
 import TrendingCard from '../../ui/cards/TrendingCard'
 import Hero from '../../components/Hero'
 import Card from '../../ui/cards/Card'
-// import Aside from '../../ui/Aside'
+import Aside from '../../ui/Aside'
 import Error from '../../ui/error'
 import './styles.scss'
 
 import { getPosts } from '../../Actions/posts'
 import { LinearProgress } from '@material-ui/core'
 import { Pagination } from '@material-ui/lab'
+import { getCategories } from '../../Actions/post'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -60,8 +61,11 @@ const Featured = () => {
   const { articles, count } = useSelector((state) => state.posts)
   const { loading } = useSelector((state) => state.loading)
   const dispatch = useDispatch()
+  const { categories } = useSelector((state) => state.posts)
 
   const [page, setPage] = useState(1)
+
+  useEffect(() => dispatch(getCategories()), [dispatch])
 
   const handlePage = (e, v) => {
     setPage(v)
@@ -74,12 +78,21 @@ const Featured = () => {
       <div className='contents'>
         <div className='first'>
           {articles.map((post, i) => (
-            <Card key={i} id={post.id} title={post.title} author={post.user_detail} slug={post.slug} />
+            <Card
+              key={i}
+              id={post.id}
+              title={post.title}
+              author={post.user_detail}
+              thumbnail={post.thumbnail}
+              slug={post.slug}
+            />
           ))}
         </div>
         {/* Categories-- future implementation */} {/* Fetch categories */}
         <div className='second'>
-          {/* <Aside /> */}
+          {categories && <Aside categories={categories} />}
+          <br />
+          <hr />
           <br />
           <Pagination
             count={Math.ceil(count / 5)}

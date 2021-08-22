@@ -1,24 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createPost, resetPost } from '../../Actions/post'
+import { createPost, getCategories, resetPost } from '../../Actions/post'
 import Editor from '../../ui/text'
 import './styles.scss'
 
 export const Create = ({ history }) => {
   const [title, setTitle] = useState('')
   const [data, setData] = useState('')
+  const [image, setImage] = useState()
+  const [categ, setCateg] = useState()
 
   const dispatch = useDispatch()
   const { success } = useSelector((state) => state.postR)
   const { loading } = useSelector((state) => state.loading)
   const { error, message } = useSelector((state) => state.error)
+  const { categories } = useSelector((state) => state.posts)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(data)
-    dispatch(createPost({ title, description: data, category: 1 }))
+
+    let formData = new FormData()
+
+    formData.append('title', title)
+    formData.append('description', data)
+    formData.append('thumbnail', image)
+    formData.append('category', categ + 1)
+
+    dispatch(createPost(formData))
   }
+
   useEffect(() => {
+    dispatch(getCategories())
     return () => dispatch(resetPost())
   }, [dispatch])
 
@@ -49,12 +61,34 @@ export const Create = ({ history }) => {
           />
         </div>
 
-        <Editor data={data} setData={setData} />
+        <div>
+          <label className='form__label' htmlFor='title'>
+            Description
+          </label>
+          <Editor data={data} setData={setData} />
+        </div>
+        <br />
 
-        <label>Upload thumbnail: </label>
-        <input type='file' />
-        <h4>Categories...</h4>
-        <h4>Tutorial...</h4>
+        <div className='form__field'>
+          <label>Upload thumbnail: </label>
+          <input type='file' name='image' onChange={(e) => setImage(e.target.files[0])} />
+        </div>
+        <br />
+
+        <div className='form__field'>
+          <label htmlFor='categories'> Categories</label>
+          <select name='categories' value={categ} onChange={(e) => setCateg(e.target.value)} id='categories'>
+            {categories &&
+              categories.map((categ, id) => {
+                return (
+                  <option key={id} value={id}>
+                    {categ.c_name}
+                  </option>
+                )
+              })}
+          </select>
+        </div>
+
         <button type='submit' className='form__btn'>
           Create
         </button>

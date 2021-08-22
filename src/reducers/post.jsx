@@ -5,6 +5,7 @@ import {
   DELETE_SUCCESS,
   UPDATE_SUCCESS,
   LIKE_POST,
+  SET_CATEGORIES
 } from '../constants/actionTypes'
 import { FETCH_SUCCESS, RESET } from '../constants/actionTypes'
 
@@ -12,7 +13,9 @@ import { FETCH_SUCCESS, RESET } from '../constants/actionTypes'
 export const posts = (articles = [], action) => {
   switch (action.type) {
     case FETCH_SUCCESS:
-      return { articles: action.payload, count: action.count, next: action.next, prev: action.prev }
+      return { articles: action.payload, count: action.count }
+    case SET_CATEGORIES:
+      return { ...articles, categories: action.payload }
     default:
       return articles
   }

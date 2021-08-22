@@ -6,7 +6,7 @@ export const getPosts = (page) => async (dispatch) => {
     dispatch({ type: SET_LOADING })
 
     const { data } = await api.fetchPosts(page)
-    dispatch({ type: FETCH_SUCCESS, payload: data.results, count: data.count, next: data.next, prev: data?.previous })
+    dispatch({ type: FETCH_SUCCESS, payload: data.results, count: data.count})
 
     dispatch({ type: DONE_LOADING })
   } catch (error) {

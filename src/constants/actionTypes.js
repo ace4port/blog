@@ -49,3 +49,6 @@ export const SET_LOADING = 'SET_LOADING'
 export const DONE_LOADING = 'DONE_LOADING'
 export const SET_ERROR = 'SET_ERROR'
 export const RESET_ERROR = 'RESET_ERROR'
+
+// fetch categories
+export const SET_CATEGORIES = 'SET_CATEGORIES'

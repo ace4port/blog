@@ -6,7 +6,7 @@ import { deletePost, resetPost } from '../../Actions/post'
 import { AuthorDetailed } from '../../components/Author'
 import Error from '../../ui/error'
 
-const Head = ({ title, desc, featImg, id, text, follow }) => {
+const Head = ({ title, desc, featImg, id, text, follow, thumb }) => {
   const dispatch = useDispatch()
   const { post, successDelete } = useSelector((state) => state.postR)
   const { error, message } = useSelector((state) => state.error)
@@ -42,6 +42,8 @@ const Head = ({ title, desc, featImg, id, text, follow }) => {
       </div>
 
       <AuthorDetailed text={text} follow={follow} />
+      <hr />
+      {thumb && <FeatImage feat={thumb} alt='thumbnail' />}
     </>
   )
 }
@@ -53,8 +55,8 @@ const Title = ({ title }) => <h1 className='blog__title'>{title}</h1>
 //description of blog
 // const SubTitle = ({ title }) => <h3 className='blog__desc'>{title}</h3>
 
-// const FeatImage = ({ feat, alt }) => (
-//   <div className='blog__feat'>
-//     <img className='blog__feat__img' src={feat} alt={alt} />
-//   </div>
-// )
+const FeatImage = ({ feat, alt }) => (
+  <div className='blog__feat'>
+    <img className='blog__feat__img' src={feat} alt={alt} />
+  </div>
+)
