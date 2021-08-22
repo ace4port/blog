@@ -5,7 +5,7 @@ import TrendingIcon from '../../components/Icons/TrendingIcon'
 import TrendingCard from '../../ui/cards/TrendingCard'
 import Hero from '../../components/Hero'
 import Card from '../../ui/cards/Card'
-import Aside from '../../ui/Aside'
+// import Aside from '../../ui/Aside'
 import Error from '../../ui/error'
 import './styles.scss'
 
@@ -17,15 +17,10 @@ const Home = () => {
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
   const { error, message } = useSelector((s) => s.error)
-  const [page, setPage] = useState(1)
 
   // get posts
   useEffect(() => dispatch(getPosts()), [dispatch])
   const { articles } = useSelector((state) => state.posts)
-
-  const handlePage = (e, v) => {
-    setPage(v)
-  }
 
   return (
     <>
@@ -37,7 +32,6 @@ const Home = () => {
         <>
           <Trending />
           <Featured />
-          <Pagination count={20 / 5} page={page} onChange={handlePage} variant='outlined' shape='rounded' />
         </>
       )}
     </>
@@ -63,18 +57,39 @@ const Trending = () => {
 }
 
 const Featured = () => {
-  const { articles } = useSelector((state) => state.posts)
+  const { articles, count } = useSelector((state) => state.posts)
+  const { loading } = useSelector((state) => state.loading)
+  const dispatch = useDispatch()
+
+  const [page, setPage] = useState(1)
+
+  const handlePage = (e, v) => {
+    setPage(v)
+    dispatch(getPosts(v))
+  }
+
   return (
-    <div className='contents'>
-      <div className='first'>
-        {articles.slice(3, 5).map((post, i) => (
-          <Card key={i} id={post.id} title={post.title} author={post.user_detail} slug={post.slug} />
-        ))}
+    <>
+      {loading && <LinearProgress style={{ width: '100%', height: '0.3rem' }} />}
+      <div className='contents'>
+        <div className='first'>
+          {articles.map((post, i) => (
+            <Card key={i} id={post.id} title={post.title} author={post.user_detail} slug={post.slug} />
+          ))}
+        </div>
+        {/* Categories-- future implementation */} {/* Fetch categories */}
+        <div className='second'>
+          {/* <Aside /> */}
+          <br />
+          <Pagination
+            count={Math.ceil(count / 5)}
+            page={page}
+            onChange={handlePage}
+            variant='outlined'
+            shape='rounded'
+          />
+        </div>
       </div>
-      {/* Categories-- future implementation */} {/* Fetch categories */}
-      <div className='second'>
-        <Aside />
-      </div>
-    </div>
+    </>
   )
 }

@@ -14,7 +14,7 @@ export const updateUser = (id, details, config) => axios.put(`${url}/users/${id}
 export const updateProfile = (id, formData, config) => axios.put(`${url}/users/${id}/profile/`, formData, config)
 
 // Home page
-export const fetchPosts = () => axios.get(`${url}/posts?limit=5/`)
+export const fetchPosts = (page) => axios.get(`${url}/posts?limit=5/${page ? `%2F&page=${page}` : ''}`)
 
 // Single post crud
 export const fetchOne = (id) => axios.get(`${url}/posts/${id}/`)
