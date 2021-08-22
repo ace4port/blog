@@ -1,21 +1,22 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, useParams } from 'react-router-dom'
+import Editor from '../../ui/text'
 import { getOnePost, updatePost, resetPost } from '../../Actions/post'
 
 export const Edit = () => {
   let { id } = useParams()
   const { success } = useSelector((state) => state.postR)
 
-  const post = useSelector(state => state.postR.post)
+  const post = useSelector((state) => state.postR.post)
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getOnePost(id))
-    setTitle(s => post.title)
-    setDesc(s => post.description)
+    setTitle((s) => post.title)
+    setDesc((s) => post.description)
 
-    return () =>  dispatch(resetPost())
+    return () => dispatch(resetPost())
   }, [dispatch, id, post.title, post.description])
 
   // useEffect(() => dispatch(resetPost()), [dispatch])
@@ -25,15 +26,15 @@ export const Edit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(updatePost(id, {title, description: desc, category: 1}))
+    dispatch(updatePost(id, { title, description: desc, category: 1 }))
   }
 
-  if(success) {
+  if (success) {
     return <Redirect to='/' />
   }
 
   return (
-      <div className='blog-contain'>
+    <div className='blog-contain'>
       {/* {loading && <p>Loading ...</p>} */}
       {/* {error && <p>{message}</p>} */}
       {/* {success && message} */}
@@ -50,18 +51,13 @@ export const Edit = () => {
             id='title'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required  
+            required
             maxLength='200'
           />
         </div>
         <div>
           <label className='form__label'>Description</label>
-          <textarea
-            className='form__field form__field__desc'
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
-            required
-          />
+          <Editor data={desc} setData={setDesc} />
         </div>
         <label>Upload thumbnail: </label>
         <input type='file' />
@@ -72,5 +68,5 @@ export const Edit = () => {
         </button>
       </form>
     </div>
-    )
+  )
 }

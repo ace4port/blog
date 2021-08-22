@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
+// import parse from 'html-react-parser'
+import Editor from '../../ui/text'
 
 import Head from './Head'
 import Footer from './Footer'
@@ -58,4 +60,6 @@ const BlogPage = () => {
 
 export default BlogPage
 
-const Body = ({ body }) => <div className='blog__body'>{body}</div>
+// const Body = ({ body }) => <div className='blog__body'>{parse(body)}</div>
+
+const Body = ({ body }) => <Editor data={body} disabled={true} />

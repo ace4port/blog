@@ -27,7 +27,8 @@ const setLocalStorage = (refresh, access, user) => {
   localStorage.setItem('refresh', refresh)
   localStorage.setItem('access', access)
   localStorage.setItem('user', JSON.stringify(user))
-  localStorage.setItem('exp', Date.now())
+  localStorage.setItem('exp', Date.now() + 600000)
+  localStorage.setItem('ref_exp', Date.now() + 8640000)
 }
 
 export const logIn = (user) => async (dispatch) => {

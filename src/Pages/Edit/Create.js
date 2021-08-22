@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPost, resetPost } from '../../Actions/post'
+import Editor from '../../ui/text'
 import './styles.scss'
 
 export const Create = ({ history }) => {
   const [title, setTitle] = useState('')
-  const [desc, setDesc] = useState('')
+  const [data, setData] = useState('')
 
   const dispatch = useDispatch()
   const { success } = useSelector((state) => state.postR)
@@ -14,7 +15,8 @@ export const Create = ({ history }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(createPost({ title, description: desc, category: 1 }))
+    console.log(data)
+    dispatch(createPost({ title, description: data, category: 1 }))
   }
   useEffect(() => {
     return () => dispatch(resetPost())
@@ -46,15 +48,9 @@ export const Create = ({ history }) => {
             maxLength='200'
           />
         </div>
-        <div>
-          <label className='form__label'>Description</label>
-          <textarea
-            className='form__field form__field__desc'
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
-            required
-          />
-        </div>
+
+        <Editor data={data} setData={setData} />
+
         <label>Upload thumbnail: </label>
         <input type='file' />
         <h4>Categories...</h4>

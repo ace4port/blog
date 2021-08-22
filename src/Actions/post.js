@@ -37,24 +37,27 @@ export const removeOne = () => (dispatch) => {
 export const resetCreate = () => async (dispatch) => dispatch({ type: RESET })
 
 export const tokenValidate = async () => {
-  const exp = parseInt(localStorage.getItem('exp'))
+  const acc_exp = parseInt(localStorage.getItem('exp'))
   const ref_exp = parseInt(localStorage.getItem('r_exp'))
 
-  if (Date.now() >= ref_exp + 8640000) {
+  if (Date.now() >= ref_exp) {
     console.log('Refresh token expired')
     localStorage.clear()
     logOut()
     return
   }
 
-  if (Date.now() >= exp + 600000) {
+  if (Date.now() >= acc_exp) {
+    console.log(Date.now(), acc_exp)
     const tokenR = localStorage.getItem('refresh')
     console.log('Access token expired')
     const access = await api.refresh(tokenR)
-    localStorage.setItem('access', access)
     const tokenA = access?.data?.access
+    localStorage.setItem('access', tokenA)
+    localStorage.setItem('exp', Date.now() + 600000)
     return tokenA
   }
+  console.log('Access token used')
   return localStorage.getItem('access')
 }
 
