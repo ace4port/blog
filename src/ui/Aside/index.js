@@ -2,7 +2,6 @@ import React from 'react'
 import './styles.scss'
 
 const Aside = ({ categories }) => {
-  console.log(categories)
   return (
     <div className='aside'>
       <h4>Discover more</h4>

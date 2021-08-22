@@ -26,7 +26,7 @@ export const Edit = () => {
 
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
-  const [categ, setCateg] = useState()
+  const [categ, setCateg] = useState(0)
   const [image, setImage] = useState()
 
   const handleSubmit = (e) => {
@@ -34,14 +34,15 @@ export const Edit = () => {
 
     
     let formData = new FormData()
+    console.log(image)
 
     formData.append('title', title)
     formData.append('description', desc)
     formData.append('thumbnail', image)
-    formData.append('category', categ + 1)
+    formData.append('category', parseInt(categ) + 1)
 
     // dispatch(createPost(formData))
-    dispatch(updatePost(id, { title, description: desc, category: 1 }))
+    dispatch(updatePost(id, formData))
   }
 
   if (success) {

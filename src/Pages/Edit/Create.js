@@ -22,9 +22,9 @@ export const Create = ({ history }) => {
     let formData = new FormData()
 
     formData.append('title', title)
-    formData.append('description', data)
     formData.append('thumbnail', image)
-    formData.append('category', categ + 1)
+    formData.append('description', data)
+    formData.append('category', parseInt(categ) + 1)
 
     dispatch(createPost(formData))
   }

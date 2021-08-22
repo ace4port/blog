@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Avatar from '../Avatar'
 import './menu.scss'
-import { logOut } from '../../Actions/user'
+import { getUser, logOut } from '../../Actions/user'
 
 const Menu = () => {
   const { isAuthenticated, user } = useSelector((s) => s.userLogin)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const u = JSON.parse(localStorage.getItem('user'))
+      u && dispatch(getUser(u.id))
+    }
+  }, [dispatch, user, isAuthenticated])
+
+  const userData = useSelector((state) => state.userData)
+
   return (
     <div className='nav'>
       <div className='nav__logo'>
@@ -47,7 +57,7 @@ const Menu = () => {
               </li>
               <li>
                 <Link to='/user/settings'>
-                  <Avatar round variant='lg' />
+                  {userData && <Avatar round variant='lg' avImg={userData?.user?.profile?.avatar} />}
                 </Link>
               </li>
             </>

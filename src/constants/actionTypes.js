@@ -1,4 +1,5 @@
 // User actions
+export const SET_USER = 'SET_USER'
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const REGISTER_ERROR = 'REGISTER_ERROR'

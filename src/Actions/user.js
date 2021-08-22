@@ -1,4 +1,5 @@
 import {
+  SET_USER,
   LOG_IN_SUCCESS,
   REGISTER_SUCCESS,
   LOG_OUT,
@@ -13,6 +14,15 @@ import {
 
 import * as api from '../api/index.js'
 import { tokenValidate } from './post'
+
+export const getUser = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.user(id)
+    dispatch({ type: SET_USER, payload: data })
+  } catch (error) {
+    console.log(error.message)
+  }
+}
 
 export const logInToken = () => async (dispatch) => {
   try {

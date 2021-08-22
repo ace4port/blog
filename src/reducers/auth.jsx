@@ -1,4 +1,5 @@
 import {
+  SET_USER,
   LOG_IN_TOKEN,
   LOG_IN_SUCCESS,
   LOG_OUT,
@@ -15,6 +16,15 @@ const initState = {
   inAuthenticated: false,
   message: '',
   user: {},
+}
+
+export const userData = (user = {}, action) => {
+  switch (action.type) {
+    case SET_USER:
+      return { user: action.payload }
+    default:
+      return user
+  }
 }
 
 export const userLogin = (logIn = initState, action) => {
