@@ -12,7 +12,7 @@ import { FETCH_SUCCESS, RESET } from '../constants/actionTypes'
 export const posts = (articles = [], action) => {
   switch (action.type) {
     case FETCH_SUCCESS:
-      return { articles: action.payload }
+      return { articles: action.payload, count: action.count, next: action.next }
     default:
       return articles
   }

@@ -11,6 +11,7 @@ import './styles.scss'
 
 import { getPosts } from '../../Actions/posts'
 import { LinearProgress } from '@material-ui/core'
+import { Pagination } from '@material-ui/lab'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -31,6 +32,7 @@ const Home = () => {
         <>
           <Trending />
           <Featured />
+          <Pagination count={20 / 5} variant='outlined' shape='rounded' />
         </>
       )}
     </>
