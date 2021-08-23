@@ -6,10 +6,11 @@ import { deletePost, resetPost } from '../../Actions/post'
 import { AuthorDetailed } from '../../components/Author'
 import Error from '../../ui/error'
 
-const Head = ({ title, desc, featImg, id, text, follow, thumb }) => {
+const Head = ({ title, category, featImg, id, text, follow, thumb }) => {
   const dispatch = useDispatch()
   const { post, successDelete } = useSelector((state) => state.postR)
   const { error, message } = useSelector((state) => state.error)
+  const { categories } = useSelector((state) => state.posts)
   const { user } = useSelector((s) => s.userLogin)
 
   useEffect(() => {
@@ -19,14 +20,14 @@ const Head = ({ title, desc, featImg, id, text, follow, thumb }) => {
   if (successDelete) {
     return <Redirect to='/' />
   }
-
+  // console.log(categories.find((cat) => cat.id === category).c_name)
   return (
     <>
       {error && <Error show={error} message={`Delete failed ${message}`} />}
       <div className='head__top'>
         <div className='head__top__right'>
           <Title title={title} />
-          {/* <SubTitle title='One line description of the blog' /> */}
+          <SubTitle title={categories.find((cat) => cat.id === category).c_name} />
         </div>
         {/* Edit delete functions */}
         {post?.user_detail?.id === user?.id && (
@@ -53,7 +54,7 @@ export default Head
 const Title = ({ title }) => <h1 className='blog__title'>{title}</h1>
 
 //description of blog
-// const SubTitle = ({ title }) => <h3 className='blog__desc'>{title}</h3>
+const SubTitle = ({ title }) => <h3 className='blog__desc'>{title}</h3>
 
 const FeatImage = ({ feat, alt }) => (
   <div className='blog__feat'>

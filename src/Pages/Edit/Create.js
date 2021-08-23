@@ -34,6 +34,11 @@ export const Create = ({ history }) => {
     return () => dispatch(resetPost())
   }, [dispatch])
 
+  const loadFile = (e) => {
+    setImage(e.target.files[0])
+    document.getElementById('img').src = URL.createObjectURL(e.target.files[0])
+  }
+
   if (success) {
     history.push('/')
   }
@@ -61,6 +66,12 @@ export const Create = ({ history }) => {
           />
         </div>
 
+        <div className='form__field'>
+          {<img src='#' alt='post thumbnail' id='img' />}
+          <label>Upload thumbnail: </label>
+          <input type='file' name='image' onChange={loadFile} />
+        </div>
+
         <div>
           <label className='form__label' htmlFor='title'>
             Description
@@ -70,14 +81,13 @@ export const Create = ({ history }) => {
         <br />
 
         <div className='form__field'>
-          <label>Upload thumbnail: </label>
-          <input type='file' name='image' onChange={(e) => setImage(e.target.files[0])} />
-        </div>
-        <br />
-
-        <div className='form__field'>
           <label htmlFor='categories'> Categories</label>
-          <select name='categories' value={categ} onChange={(e) => setCateg(e.target.value)} id='categories'>
+          <select
+            name='categories'
+            value={categ}
+            onChange={(e) => setCateg(e.target.value)}
+            placeholder='Categories'
+            id='categories'>
             {categories &&
               categories.map((categ, id) => {
                 return (

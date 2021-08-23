@@ -49,7 +49,6 @@ export const tokenValidate = async () => {
   }
 
   if (Date.now() >= acc_exp) {
-    console.log(Date.now(), acc_exp)
     const tokenR = localStorage.getItem('refresh')
     console.log('Access token expired')
     const access = await api.refresh(tokenR)

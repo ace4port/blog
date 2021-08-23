@@ -51,6 +51,7 @@ const BlogPage = () => {
             <Head
               title={post.title}
               desc={post.description}
+              category={post.category}
               id={id}
               text={text}
               thumb={post.thumbnail}
