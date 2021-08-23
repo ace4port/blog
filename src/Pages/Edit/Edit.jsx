@@ -39,7 +39,7 @@ export const Edit = () => {
     formData.append('title', title)
     formData.append('description', desc)
     formData.append('thumbnail', image)
-    formData.append('category', parseInt(categ) + 1)
+    formData.append('category', parseInt(categ))
 
     // dispatch(createPost(formData))
     dispatch(updatePost(id, formData))
@@ -88,7 +88,7 @@ export const Edit = () => {
             {categories &&
               categories.map((categ, id) => {
                 return (
-                  <option key={id} value={id}>
+                  <option key={id} value={categ.id}>
                     {categ.c_name}
                   </option>
                 )

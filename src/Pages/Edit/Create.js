@@ -24,7 +24,7 @@ export const Create = ({ history }) => {
     formData.append('title', title)
     formData.append('thumbnail', image)
     formData.append('description', data)
-    formData.append('category', parseInt(categ) + 1)
+    formData.append('category', parseInt(categ))
 
     dispatch(createPost(formData))
   }
@@ -81,7 +81,7 @@ export const Create = ({ history }) => {
             {categories &&
               categories.map((categ, id) => {
                 return (
-                  <option key={id} value={id}>
+                  <option key={id} value={categ.id}>
                     {categ.c_name}
                   </option>
                 )

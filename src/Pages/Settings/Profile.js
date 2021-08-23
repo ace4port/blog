@@ -1,32 +1,29 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import Error from '../../ui/error'
 import { updateProfile } from '../../Actions/user'
 // import './styles.scss'
 
 const Setting = () => {
-  return (
-    <div>
-      <Form />
-    </div>
-  )
+  const { user } = useSelector((s) => s.userData)
+
+  return <div>{user?.profile && <Form user={user} />}</div>
 }
 
 export default Setting
 
-export const Form = () => {
+export const Form = ({ user, history }) => {
   // let { success, isAuthenticated } = useSelector((s) => s.userLogin)
   const { error, message } = useSelector((s) => s.error)
-  const { user } = useSelector((s) => s.userLogin)
+  // const { user } = useSelector((s) => s.userLogin)
+  // const { user } = useSelector((s) => s.userData)
 
   const dispatch = useDispatch()
-  const history = useHistory()
 
-  const [address, setAddress] = useState('')
-  const [image, setImage] = useState()
-  const [gender, setGender] = useState()
-  const [date, setDate] = useState('')
+  const [address, setAddress] = useState(user.profile.address)
+  const [image, setImage] = useState(user.profile.avatar)
+  const [gender, setGender] = useState(user.profile.gender)
+  const [date, setDate] = useState(user.profile.birth_date)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -37,6 +34,11 @@ export const Form = () => {
     formData.append('date_of_birth', date)
     formData.append('gender', gender)
     dispatch(updateProfile(user.id, formData))
+  }
+
+  const loadFile = (e) => {
+    setImage(e.target.files[0])
+    document.getElementById('img').src = URL.createObjectURL(e.target.files[0])
   }
 
   if (false) {
@@ -71,11 +73,15 @@ export const Form = () => {
         <div className='form__item'>
           <p>Gender</p>
           <label htmlFor='male'>Male</label>
-          <input type='radio' id='male' name='gender' value={gender} onChange={() => setGender('male')} /> 
+          <input type='radio' id='male' name='gender' value='male' onChange={() => setGender('male')} /> 
           <label htmlFor='female'>Female</label>
-          <input type='radio' id='female' name='gender' value={gender} onChange={() => setGender('female')} /> 
+          <input type='radio' id='female' name='gender' value='female' onChange={() => setGender('female')} /> 
         </div>
-        <input type='file' name='image' onChange={(e) => setImage(e.target.files[0])} />
+
+        <div className='form__item'>
+          <img src={user.profile.avatar} alt='profile' id='img' />
+          <input type='file' name='image' onChange={loadFile} />
+        </div>
         <button className='form__btn' type='submit'>
           Update Profile
         </button>

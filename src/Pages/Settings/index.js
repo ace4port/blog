@@ -18,14 +18,14 @@ export default Setting
 export const Form = () => {
   // let { success, isAuthenticated } = useSelector((s) => s.userLogin)
   const { error, message } = useSelector((s) => s.error)
-  const { user } = useSelector((s) => s.userLogin)
+  const { user } = useSelector((s) => s.userData)
 
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const [first_name, setFirstName] = useState('')
-  const [last_name, setLastName] = useState('')
-  const [email, setEmail] = useState('')
+  const [first_name, setFirstName] = useState(user.first_name)
+  const [last_name, setLastName] = useState(user.last_name)
+  const [email, setEmail] = useState(user.email)
 
   const handleSubmit = (e) => {
     e.preventDefault()
