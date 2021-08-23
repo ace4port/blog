@@ -6,7 +6,7 @@ import { deletePost, resetPost } from '../../Actions/post'
 import { AuthorDetailed } from '../../components/Author'
 import Error from '../../ui/error'
 
-const Head = ({ title, category, featImg, id, text, follow, thumb }) => {
+const Head = ({ title, category, id, text, follow, thumb }) => {
   const dispatch = useDispatch()
   const { post, successDelete } = useSelector((state) => state.postR)
   const { error, message } = useSelector((state) => state.error)
@@ -27,7 +27,7 @@ const Head = ({ title, category, featImg, id, text, follow, thumb }) => {
       <div className='head__top'>
         <div className='head__top__right'>
           <Title title={title} />
-          <SubTitle title={categories.find((cat) => cat.id === category).c_name} />
+          {categories && <SubTitle title={categories.find((cat) => cat.id === category).c_name} />}
         </div>
         {/* Edit delete functions */}
         {post?.user_detail?.id === user?.id && (
