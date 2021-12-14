@@ -1,0 +1,49 @@
+@import './styles/main.scss';
+
+body {
+    margin: 0;
+    font-family: 'Helvetica', 'Roboto', 'Oxygen', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body a {
+    color: $primary;
+    text-decoration: none;
+    &:hover {
+        color: $secondary;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: $secondary;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $primary;
+    width: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $dark;
+}
+
+/* Code for Firefox */
+::-moz-selection {
+    transform: scale(1.2);
+    background: $primary;
+    color: $light;
+}
+
+::selection {
+    transform: scale(1.2);
+    background: $primary;
+    color: $light;
+}

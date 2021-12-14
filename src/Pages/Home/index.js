@@ -1,108 +1,117 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import TrendingIcon from '../../components/Icons/TrendingIcon'
 import TrendingCard from '../../ui/cards/TrendingCard'
 import Hero from '../../components/Hero'
 import Card from '../../ui/cards/Card'
 import Aside from '../../ui/Aside'
 import Error from '../../ui/error'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import Pagination from '@material-ui/lab/Pagination'
 import './styles.scss'
 
 import { getPosts } from '../../Actions/posts'
-import { LinearProgress } from '@material-ui/core'
-import { Pagination } from '@material-ui/lab'
 import { getCategories } from '../../Actions/post'
+import { TrendingUp } from '@material-ui/icons'
 
 const Home = () => {
-  const dispatch = useDispatch()
-  const userLogin = useSelector((state) => state.userLogin)
-  const { error, message } = useSelector((s) => s.error)
+    const dispatch = useDispatch()
+    const userLogin = useSelector((state) => state.userLogin)
+    const { error, message } = useSelector((s) => s.error)
+    const loading = useSelector((state) => state.loading.loading)
 
-  // get posts
-  useEffect(() => dispatch(getPosts()), [dispatch])
-  const { articles } = useSelector((state) => state.posts)
-
-  return (
-    <>
-      <Hero name={userLogin?.user?.username} />
-      {error && <Error show={error} message={message} />}
-      {!articles ? (
-        <LinearProgress style={{ width: '100%', height: '0.5rem' }} />
-      ) : (
+    // get posts
+    useEffect(() => dispatch(getPosts()), [dispatch])
+    return (
         <>
-          <Trending />
-          <Featured />
+            <Hero name={userLogin?.user?.username} />
+            {error && <Error show={error} message={message} />}
+            {loading && <LinearProgress style={{ width: '100%', height: '0.5rem' }} />}
+            <Trending />
+            <Featured />
         </>
-      )}
-    </>
-  )
+    )
 }
 export default Home
 
 const Trending = () => {
-  const { articles } = useSelector((state) => state.posts)
-  return (
-    <div className='trend'>
-      <div className='trend__top'>
-        <TrendingIcon className='icon' />
-        <span>Trending on Tech-Blogs</span>
-      </div>
-      <div className='trend__card'>
-        {articles.slice(0, 3).map((post, index) => (
-          <TrendingCard key={index} author={post.user_detail} title={post.title} date={post.createdAt} id={post.id} />
-        ))}
-      </div>
-    </div>
-  )
+    const { articles } = useSelector((state) => state.posts)
+    return (
+        <div className="trend">
+            <div className="trend__top">
+                <TrendingUp color="secondary" className="icon" />
+                <span>Trending on Tech-Blogs</span>
+            </div>
+            <div className="trend__card">
+                {articles && articles[0] ? (
+                    articles
+                        .slice(0, 3)
+                        .map((post, index) => (
+                            <TrendingCard
+                                key={index}
+                                author={post.user_detail}
+                                title={post.title}
+                                date={post.createdAt}
+                                id={post.id}
+                            />
+                        ))
+                ) : (
+                    <h2>No articles found ... </h2>
+                )}
+            </div>
+        </div>
+    )
 }
 
 const Featured = () => {
-  const { articles, count } = useSelector((state) => state.posts)
-  const { loading } = useSelector((state) => state.loading)
-  const dispatch = useDispatch()
-  const { categories } = useSelector((state) => state.posts)
+    const dispatch = useDispatch()
+    const { articles, count } = useSelector((state) => state.posts)
+    const { categories } = useSelector((state) => state.posts)
+    const [page, setPage] = useState(1)
 
-  const [page, setPage] = useState(1)
+    useEffect(() => dispatch(getCategories()), [dispatch])
 
-  useEffect(() => dispatch(getCategories()), [dispatch])
+    const handlePage = (e, v) => {
+        setPage(v)
+        dispatch(getPosts(v))
+    }
 
-  const handlePage = (e, v) => {
-    setPage(v)
-    dispatch(getPosts(v))
-  }
-
-  return (
-    <>
-      {loading && <LinearProgress style={{ width: '100%', height: '0.3rem' }} />}
-      <div className='contents'>
-        <div className='first'>
-          {articles.map((post, i) => (
-            <Card
-              key={i}
-              id={post.id}
-              title={post.title}
-              author={post.user_detail}
-              thumbnail={post.thumbnail}
-              slug={post.slug}
-            />
-          ))}
-        </div>
-        {/* Categories-- future implementation */} {/* Fetch categories */}
-        <div className='second'>
-          {categories && <Aside categories={categories} />}
-          <br />
-          <hr />
-          <br />
-          <Pagination
-            count={Math.ceil(count / 5)}
-            page={page}
-            onChange={handlePage}
-            variant='outlined'
-            shape='rounded'
-          />
-        </div>
-      </div>
-    </>
-  )
+    return (
+        <>
+            <div className="contents">
+                <div className="first">
+                    {articles && articles[0] ? (
+                        articles.map((post, i) => (
+                            <Card
+                                key={i}
+                                id={post.id}
+                                title={post.title}
+                                author={post.user_detail}
+                                thumbnail={post.thumbnail}
+                                slug={post.slug}
+                            />
+                        ))
+                    ) : (
+                        <h2>Sorry No articles found ... </h2>
+                    )}
+                </div>
+                {/* Categories-- future implementation */} {/* Fetch categories */}
+                <div className="second">
+                    {categories && <Aside categories={categories} />}
+                    {count > 5 && (
+                        <>
+                            <hr />
+                            <Pagination
+                                count={Math.ceil(count / 5)}
+                                page={page}
+                                onChange={handlePage}
+                                variant="outlined"
+                                shape="rounded"
+                            />
+                        </>
+                    )}
+                </div>
+            </div>
+        </>
+    )
 }

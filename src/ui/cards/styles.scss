@@ -1,83 +1,77 @@
+@import '/src/styles/main.scss';
+
 .contents {
-  padding: 1rem 2.5rem;
-  background-color: rgba(56, 81, 155, 0.39);
+    padding: 1rem 2.5rem;
+    background-color: lighten($tertiary, 10%);
 }
 
 .card {
-  padding: 0 0 0 0.5rem;
-  background-color: rgba(133, 109, 109, 0.158);
-  margin-bottom: 2rem;
+    padding: 0 0 0 0.5rem;
+    background-color: lighten($tertiary, 20%);
+    margin-bottom: 2rem;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  .featured {
-    width: 200px;
-    height: 134px;
-  }
-  h2 {
-    font-size: 2rem;
-    margin-top: 0rem;
-    margin-bottom: 0px;
-  }
-  h3 {
-    font-size: 1rem;
-    font-weight: 300;
-    margin: 0px;
-  }
-
-  span {
-    color: rgb(119, 116, 116);
-    font-size: 0.7rem;
-    margin-bottom: 0px;
-  }
+    .featured {
+        max-height: 10rem;
+    }
+    h2 {
+        font-size: 2rem;
+        padding: 0.8rem 0;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+    span {
+        font-size: 0.7rem;
+        color: darken($tertiary, 50%);
+    }
 }
 
 .trend {
-  background-color: rgba(158, 147, 147, 0.507);
-  padding: 1rem 2rem;
+    background-color: $light;
+    padding: 1rem 2rem;
 
-  &__top {
-    span {
-      font-size: 1.5rem;
-    }
-    .icon {
-      height: 20px !important;
-      width: 2rem !important;
-    }
-  }
-
-  &__card {
-    background-color: rgba(236, 236, 236, 0.575);
-    padding: 0 2rem;
-    margin: 0 2rem 0.5rem 0;
-    width: 25rem;
-    width: 90%;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: center;
-
-    .card {
-      width: 30%;
-      margin: 0.4rem;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
+    &__top {
+        span {
+            font-size: 1.5rem;
+        }
+        .icon {
+            height: 20px !important;
+            width: 2rem !important;
+        }
     }
 
-    h2 {
-      // position: inline;
-      font-size: 1.2rem;
-      margin-top: 2rem;
-      margin-bottom: 0px;
+    &__card {
+        margin: 0.8rem 2rem 0.5rem 0;
+        width: 25rem;
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: center;
+
+        .card {
+            width: 33%;
+            margin: 0.4rem;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            padding: 0.8rem 0;
+            margin-bottom: 0px;
+        }
+        .blogCard__details {
+            display: flex;
+            gap: 1rem;
+        }
     }
-    span {
-      font-size: 0.7rem;
-      margin-bottom: 0px;
-    }
-  }
 }
