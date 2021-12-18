@@ -95,21 +95,25 @@ const Featured = () => {
                         <h2>Sorry No articles found ... </h2>
                     )}
                 </div>
-                {/* Categories-- future implementation */} {/* Fetch categories */}
+                {/* Categories-- future implementation */} {/* redirect to blogs of that category only */}
                 <div className="second">
-                    {categories && <Aside categories={categories} />}
-                    {count > 5 && (
-                        <>
-                            <hr />
-                            <Pagination
-                                count={Math.ceil(count / 5)}
-                                page={page}
-                                onChange={handlePage}
-                                variant="outlined"
-                                shape="rounded"
-                            />
-                        </>
-                    )}
+                    <div className="sticky">
+                        {categories && <Aside categories={categories} />}
+                        {count > 5 && (
+                            <>
+                                <hr />
+                                <h3>See more blogs</h3>
+                                <br />
+                                <Pagination
+                                    count={Math.ceil(count / 5)}
+                                    page={page}
+                                    onChange={handlePage}
+                                    variant="outlined"
+                                    shape="rounded"
+                                />
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
         </>

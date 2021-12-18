@@ -1,17 +1,22 @@
 .contents {
-  display: flex;
-  .first {
-    flex: 70%;
-  }
-  .second {
-    flex: 30%;
-    margin-left: 20px;
-  }
-
-  @media (max-width: 800px) {
-    .first,
-    .second {
-      flex: 100%;
+    display: flex;
+    .first {
+        flex: 70%;
     }
-  }
+    .second {
+        flex: 30%;
+        margin-left: 20px;
+        .sticky {
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 100px;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .first,
+        .second {
+            flex: 100%;
+        }
+    }
 }

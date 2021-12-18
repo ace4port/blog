@@ -35,7 +35,7 @@ const Menu = () => {
                     </li>
                     <li>
                         {/* To do: Select random number from number of blogs */}
-                        <a href="/blogs/1" className="hvr-underline-from-left">
+                        <a href={`/blog/${Math.ceil(Math.random() * 10)}`} className="hvr-underline-from-left">
                             Random
                         </a>
                     </li>

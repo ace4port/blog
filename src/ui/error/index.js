@@ -8,20 +8,20 @@ import MuiAlert from '@material-ui/lab/Alert'
  * @returns
  */
 const Error = ({ show, message, severity = 'info' }) => {
-  const [open, setOpen] = useState(show)
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return
+    const [open, setOpen] = useState(show)
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return
+        }
+        setOpen(false)
     }
-    setOpen(false)
-  }
-  return (
-    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-      <MuiAlert elevation={6} variant='filled' onClose={handleClose} severity={severity}>
-        {message}
-      </MuiAlert>
-    </Snackbar>
-  )
+    return (
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity={severity}>
+                {message}
+            </MuiAlert>
+        </Snackbar>
+    )
 }
 
 export default Error

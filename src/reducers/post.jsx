@@ -15,7 +15,8 @@ export const posts = (articles = [], action) => {
         case FETCH_SUCCESS:
             return { ...articles, articles: action.payload, count: action.count }
         case SET_CATEGORIES:
-            return { ...articles, categories: action.payload }
+            console.log(action.payload.results)
+            return { ...articles, categories: action.payload.results }
         default:
             return articles
     }

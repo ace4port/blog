@@ -1,94 +1,104 @@
+@import '/src/styles/main.scss';
+
 .comment {
-  margin: 1rem 3rem;
-  display: flex;
-  justify-content: space-between;
-
-  .icon {
-    display: inline;
-    margin: 0 0.7rem 0 2rem;
-  }
-
-  .icons__contain {
-    display: inline;
-    cursor: pointer;
-
-    .icons__btn--liked {
-      border: none;
-      background-color: rgb(143, 125, 161);
-      border-radius: 2rem;
-
-      &:hover {
-        background-color: rgba(95, 57, 57, 0.404);
-      }
-    }
-    .icons__btn {
-      border: none;
-      display: inline;
-      background-color: inherit;
-      border-radius: 2rem;
-
-      &:hover {
-        background-color: rgba(95, 57, 57, 0.404);
-      }
-    }
-  }
-
-  .text {
-    display: inline;
-    font-size: 20px;
-  }
-}
-
-.recommended {
-  padding: 1rem 3rem;
-  background-color: rgba(67, 102, 126, 0.692);
-  .list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-
-    .item {
-      flex: 0 0 25%;
-    }
-  }
-}
-
-.foot {
-  background-color: rgb(48, 48, 94);
-  padding: 1rem 2.5rem;
-  color: white;
-  a {
-    color: rgb(170, 243, 87);
-    text-decoration: none;
-  }
-
-  .cols {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .item {
-    flex: 0 0 32%;
-    margin: 0.5rem;
-  }
-
-  .buttom {
+    margin: 1rem 3rem;
     display: flex;
     justify-content: space-between;
 
-    h2,
-    li {
-      cursor: pointer;
+    .icon {
+        display: inline;
+        margin: 0 0.7rem 0 2rem;
     }
 
-    h2 {
-      margin: 1rem 2rem;
+    .icons__contain {
+        display: inline;
+        cursor: pointer;
+
+        .icons__btn--liked {
+            border: none;
+            background-color: rgb(143, 125, 161);
+            border-radius: 2rem;
+
+            &:hover {
+                background-color: rgba(95, 57, 57, 0.404);
+            }
+        }
+        .icons__btn {
+            border: none;
+            display: inline;
+            background-color: inherit;
+            border-radius: 2rem;
+
+            &:hover {
+                background-color: rgba(95, 57, 57, 0.404);
+            }
+        }
     }
 
-    li {
-      margin: 2rem;
-      display: inline;
-      list-style-type: none;
+    .text {
+        display: inline;
+        font-size: 20px;
     }
-  }
+}
+
+.recommended {
+    padding: 1rem 3rem;
+    background-color: rgba(67, 102, 126, 0.692);
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        .item {
+            flex: 0 0 25%;
+        }
+    }
+}
+
+.foot {
+    background-color: $secondary;
+    padding: 1rem 2.5rem;
+    color: white;
+    a {
+        color: darken($light, 70%);
+        text-decoration: none;
+        &:hover {
+            color: $light;
+        }
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .cols {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .item {
+        flex: 0 0 32%;
+        margin: 0.5rem;
+    }
+
+    .buttom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2,
+        li {
+            cursor: pointer;
+        }
+
+        h2 {
+            margin: 1rem 2rem;
+        }
+
+        li {
+            margin: 2rem;
+            display: inline;
+            list-style-type: none;
+        }
+    }
 }

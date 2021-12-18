@@ -7,35 +7,35 @@ import { FollowBtn } from '../Buttons'
 import './styles.scss'
 
 export const AuthorDetailed = ({ text, follow }) => {
-  const post = useSelector((state) => state.postR.post)
+    const post = useSelector((state) => state.postR.post)
 
-  let date = new Date(post.updated_at)
-  date = date.toDateString()
+    let date = new Date(post.updated_at)
+    date = date.toDateString()
 
-  return (
-    <div className='author'>
-      <div className='author__details'>
-        <div className='author__details__img'>
-          <Avatar variant='lg' border='arc' round />
+    return (
+        <div className="author">
+            <div className="author__details">
+                <div className="author__details__img">
+                    <Avatar variant="lg" border="arc" round />
+                </div>
+                <div className="author__details__desc">
+                    <div>
+                        <h4>{post?.user_detail?.username}</h4>
+                        <FollowBtn variant="small" text={text} follow={follow} />
+                    </div>
+                    <div className="author__details__date">
+                        <span>{date}</span>
+                        <VerifiedUser fontSize="small" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="author__social">
+                <Facebook />
+                <Twitter />
+                <LinkedIn />
+                <BookmarkBorderOutlined />
+            </div>
         </div>
-        <div className='author__details__desc'>
-          <div>
-            <h4>{post?.user_detail?.username}</h4>
-            <FollowBtn variant='small' text={text} follow={follow} />
-          </div>
-          <div className='author__details__date'>
-            <span>{date}</span>
-            <VerifiedUser fontSize='small' />
-          </div>
-        </div>
-      </div>
-
-      <div className='author__social'>
-        <Facebook />
-        <Twitter />
-        <LinkedIn />
-        <BookmarkBorderOutlined />
-      </div>
-    </div>
-  )
+    )
 }

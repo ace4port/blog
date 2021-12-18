@@ -3,7 +3,7 @@ import Title from '../../components/misc/Title'
 import Author from '../../components/Author/AuthorBasic'
 
 const TrendingCard = ({ author, title, date, id }) => (
-    <div className="card">
+    <div className="trending-card">
         <Author name={author.username} />
         <Title title={title} link={id} />
         <Details date={date} />
